@@ -1,8 +1,6 @@
-/workspace.xml
+/.idea/workspace.xml
 *.pdf
 *.zip
 .env
-<<<<<<< HEAD
 .DS_Store
-=======
->>>>>>> 554874b2842c54958ea10c5038b324ced13469c9
+
