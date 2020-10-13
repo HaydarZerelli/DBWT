@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Newsletter</title>
+    <style>
+        body {background:#EFEFEF;}
+        fieldset
+        {
+            background:#FFF;
+            border:1px solid #CCC;
+            padding:10px;
+            margin-bottom:20px;
+            width:500px;
+            margin:20px auto
+        }
+        legend
+        {
+            background:#FFF;
+            border:1px solid #CCC;
+            padding:10px
+        }
+        input[type="text"]{
+            padding:8px;
+            width:500px;
+            display:block
+        }
+
+    </style>
+</head>
+<body>
+    <form name="Anmeldung">
+        <fieldset>
+            <legend> Anmeldung </legend>
+
+            <label>Anrede</label><br>
+            <input type="radio" name="Anrede" Value="Frau"> Frau<br>
+            <input type="radio" name="Anrede" Value="Herr"> Herr<br>
+            <label>Vorname<sup>*</sup></label><br>
+            <input type="text" name="Vorname" placeholder="Bitte geben Sie Ihren Vorname ein"><br>
+            <label>Nachname<sup>*</sup></label><br>
+            <input type="text" name="Nachname" placeholder="Bitte geben Sie Ihren Nachname ein"><br>
+            <label>E-mail<sup>*</sup></label><br>
+            <input type="text" name="email" placeholder="Bitte geben Sie Ihre E-mail ein"><br>
+            <label>Benachrichtigungsinterval</label><br>
+            <select name="gender">
+                <option value="Tag">Tag</option>
+                <option value="Woche">Woche</option>
+                <option value="Monat">Monat</option>
+            </select><br>
+            <input type="checkbox" name="DS">Datenschutzhinweise gelesen<br>
+            <input type="submit" value="Abschicken">
+            <div>*)Eingaben sind Pflicht</div>
+        </fieldset>
+    </form>
+</body>
+</html>
