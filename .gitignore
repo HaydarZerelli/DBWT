@@ -1,0 +1,5 @@
+/workspace.xml
+*.pdf
+*.zip
+.env
+.DS_Store
