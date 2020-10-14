@@ -29,26 +29,26 @@
     </style>
 </head>
 <body>
-    <form name="Anmeldung">
+    <form name="Anmeldung" action="formdata.html" method="post">
         <fieldset>
             <legend> Anmeldung </legend>
 
             <label>Anrede</label><br>
-            <input type="radio" name="Anrede" Value="Frau"> Frau<br>
-            <input type="radio" name="Anrede" Value="Herr"> Herr<br>
+            <input type="radio" name="Anrede" id="anrede" Value="Frau"> Frau<br>
+            <input type="radio" name="Anrede" id="anrede" Value="Herr"> Herr<br>
             <label>Vorname<sup>*</sup></label><br>
-            <input type="text" name="Vorname" placeholder="Bitte geben Sie Ihren Vorname ein"><br>
+            <input type="text" name="Vorname" id="vorname" placeholder="Bitte geben Sie Ihren Vorname ein"><br>
             <label>Nachname<sup>*</sup></label><br>
-            <input type="text" name="Nachname" placeholder="Bitte geben Sie Ihren Nachname ein"><br>
+            <input type="text" name="Nachname" id="nachname" placeholder="Bitte geben Sie Ihren Nachname ein"><br>
             <label>E-mail<sup>*</sup></label><br>
-            <input type="text" name="email" placeholder="Bitte geben Sie Ihre E-mail ein"><br>
+            <input type="text" name="email" id="email" placeholder="Bitte geben Sie Ihre E-mail ein"><br>
             <label>Benachrichtigungsinterval</label><br>
-            <select name="gender">
+            <select name="interval" id="interval">
                 <option value="Tag">Tag</option>
                 <option value="Woche">Woche</option>
                 <option value="Monat">Monat</option>
             </select><br>
-            <input type="checkbox" name="DS">Datenschutzhinweise gelesen<br>
+            <input type="checkbox" name="DS" id="ds" >Datenschutzhinweise gelesen<br>
             <input type="submit" value="Abschicken">
             <div>*)Eingaben sind Pflicht</div>
         </fieldset>
