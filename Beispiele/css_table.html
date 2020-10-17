@@ -6,53 +6,56 @@
     <style type="text/css">
         table
         {
-            border:2px #ffd1ce solid;
-            width:580px;
-            height:500px;
-            margin:0px auto;
+           border:2px #ffd1ce solid; /*das hier ist für  border*/
+           width:580px;  /*Breite*/
+           height:500px; /*Höhe*/
+           margin:10px auto; /*10px weit von P_Head*/
         }
-        h1
+        h1 /* erste Header*/
         {
-            text-align: center;
+            margin: 0px auto auto 400px; /*der margin 400px weit von Seite anfang */
         }
         p.P_Head
         {
-            text-align: center;
+            margin: 10px auto auto 400px;/*der margin 400px weit von Seite anfang und 10px weit von header 1  */
         }
-       thead
+       thead/* header von tabelle */
         {
-            background-color: #ffd1ce  ;
+           background-color: #ffd1ce  ;/*bitte farbe ändern falls ein ähnlicher gibt*/
         }
-       tr[id="Extravagant"]
+       tr[id="Extravagant"]/* 3 Zeille an der Tabelle*/
        {
            background-color: #ffd1ce  ;
        }
-       p.center
+       p.center /* die Paragraph direkt unter Tabelle*/
        {
            text-align: center;
        }
-       p.P_in_The_Table{
+       p.P_in_The_Table{/*die Paragraph an der 3 Zeile 3 Reihe*/
            margin: 0px 0px 10px 0px;
-
        }
-       ol{
-            margin:auto -10px;
+       ol{/*das ist die Liste an der Tabelle*/
+           margin:auto -10px;
        }
-       li{
-            padding:5px 5px 5px 5px;
+       li{/*für die Elemente der Liste */
+           padding:5px 5px 5px 5px;
        }
-       footer{
+       footer{ /*das ist für Horizentale ligne */
            border-top: 2px #ffd1ce solid;
        }
-       ul li{
+       ul li{/*damit die elemente von der Liste in eine Zeile geschrieben werden und für die "|" habe ich rigth border gemacht unten bei der Liste*/
            display: inline;
+       }
+       ul{/*damit meine Liste rechts gezeigt werden*/
+           text-align: right;
+           padding: 0px 10px; /*10 px von linke Seite */
        }
 
     </style>
 
     <head>
         <link rel="stylesheet" href="bildschirm-stylesheet.css" media="screen">
-        <link rel="stylesheet" href="druck-stylesheet.css" media="print">
+       <link rel="stylesheet" href="druck-stylesheet.css" media="print">
     </head>
 </head>
 <body>
