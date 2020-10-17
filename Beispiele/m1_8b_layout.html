@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .grid{
+            background: #EFEFEF;
+            /* zentriert text horizontal */
+            text-align: center;
+            /* zentriert den text vertical line-height gleich mit row height */
+            line-height: 150px;
+            border-style: solid;
+            border-width: thin;
+        }
+        .row{
+            height: 150px;
+            background: beige;
+            border-style: solid;
+            border-width: thin;
+        }
+        .flex-row{
+            /* attribut für flex eigenschaft */
+            display: flex;
+            /* den inhalt der row orientiert sich an der mitte */
+            justify-content: center;
+            /* richtung für elemente */
+            flex-direction: row;
+            height: 150px;
+            background: beige;
+            border-style: solid;
+            border-width: thin;
+        }
+
+        .col{
+            /* macht, dass sich die columns über die ganze row breite ausdehnen */
+            flex: 1;
+            background: coral;
+            border-style: solid;
+            border-width: thin;
+        }
+        .col-centered{
+            background: coral;
+            width: auto;
+            height: auto;
+            border-style: solid;
+            border-width: thin;
+        }
+    </style>
+    <title>Layout</title>
+</head>
+<body>
+    <div class="grid">
+        <div class="row">drei</div>
+        <div class="row">Elemente</div>
+        <div class="row">untereinander</div>
+        <div class="flex-row">
+            <div class="col">drei</div>
+            <div class="col">elemente</div>
+            <div class="col">nebeneinander</div>
+        </div>
+        <div class="flex-row">
+            <div class="col-centered">ein zentriertes Element</div>
+        </div>
+    </div>
+</body>
+</html>
