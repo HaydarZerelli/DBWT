@@ -4,6 +4,49 @@
     <meta charset="UTF-8">
     <title>CSS Übung</title>
     <style type="text/css">
+        table
+        {
+            border:2px #ffd1ce solid;
+            width:580px;
+            height:500px;
+            margin:0px auto;
+        }
+        h1
+        {
+            text-align: center;
+        }
+        p.P_Head
+        {
+            text-align: center;
+        }
+       thead
+        {
+            background-color: #ffd1ce  ;
+        }
+       tr[id="Extravagant"]
+       {
+           background-color: #ffd1ce  ;
+       }
+       p.center
+       {
+           text-align: center;
+       }
+       p.P_in_The_Table{
+           margin: 0px 0px 10px 0px;
+
+       }
+       ol{
+            margin:auto -10px;
+       }
+       li{
+            padding:5px 5px 5px 5px;
+       }
+       footer{
+           border-top: 2px #ffd1ce solid;
+       }
+       ul li{
+           display: inline;
+       }
 
     </style>
 
@@ -17,8 +60,9 @@
     <!-- das <div> in <main> aus Part 1 hier einfügen, um die komplette Webseite zu erhalten -->
     <div class="elektro zeile">
         <h1 id="elektro">Wofür steht das E in E-Mensa?</h1>
-        <p>Am besten zeigt man das in einer <a href="#etabelle">Tabelle</a>.</p>
+        <p class="P_Head">Am besten zeigt man das in einer <a href="#etabelle">Tabelle</a>.</p>
         <table id="etabelle">
+
             <thead>
             <tr>
                 <th>Bedeutung</th>
@@ -39,10 +83,10 @@
                     </ol>
                 </td>
             </tr>
-            <tr>
+                <tr id="Extravagant"> <!--Ich habe hier Extravagant ein ID gegeben um Style besser zu bearbeiten-->
                 <td>Extravagant</td>
                 <td>Es gibt auch Ausgefallenes</td>
-                <td><p>Wir sind die einzige Mensa weit und breit mit </p>
+                <td><p class="P_in_The_Table">Wir sind die einzige Mensa weit und breit mit </p><!-- Class P_in_The_Table-->
                     <ol>
                         <li class="pflicht">Vanillesauerkraut</li>
                         <li class="pflicht">Bohnensenfbrot</li>
@@ -70,9 +114,9 @@
 </main>
 <footer>
     <ul>
-        <li>(c) DBWT</li>
-        <li>Hilfe</li>
-        <li>Datenschutz</li>
+        <li style="border-right:2px #ffd1ce solid">(c) DBWT</li>
+        <li style="border-right:2px #ffd1ce solid">Hilfe</li>
+        <li style="border-right:2px #ffd1ce solid">Datenschutz</li>
         <li>Impressum</li>
     </ul>
 </footer>
