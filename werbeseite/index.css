@@ -1,0 +1,12 @@
+hr {
+    margin: 0;
+}
+
+#logo {
+    width: auto;
+    height: 75px;
+}
+header > .row {
+    padding: 5px;
+    margin: 0;
+}
