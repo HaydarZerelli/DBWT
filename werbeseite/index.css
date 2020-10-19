@@ -11,9 +11,11 @@
 }
 #textbox {
     display: block;
-    border: 2px solid black;
+    border: 1px solid #676767;
     box-sizing: border-box; /* weil row 100% der breite hat und die border auf die breite addiert wird und sonst nicht
     dargestellt wird */
+    text-align: justify;
+    padding: 5px;
 }
 
 
