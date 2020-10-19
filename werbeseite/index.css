@@ -4,14 +4,18 @@
     line-height: 145%;
     text-decoration: none;
 }
-hr {
-    margin: 0;
-}
 
 #logo {
     width: auto;
     height: 75px;
 }
+#textbox {
+    display: block;
+    border: 2px solid black;
+    box-sizing: border-box; /* weil row 100% der breite hat und die border auf die breite addiert wird und sonst nicht
+    dargestellt wird */
+}
+
 
 nav ul {
     list-style: none;
@@ -33,5 +37,9 @@ nav li a:hover {
 }
 header > .row {
     padding: 5px;
+    margin: 0;
+}
+
+hr {
     margin: 0;
 }
