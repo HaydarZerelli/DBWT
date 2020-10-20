@@ -4,7 +4,9 @@
     line-height: 145%;
     text-decoration: none;
 }
-
+.row {
+    box-sizing: border-box;
+}
 #logo {
     width: auto;
     height: 75px;
@@ -20,17 +22,14 @@
 .food-table {
     width: 100%;
 }
-.food-table > th {
-    width: 33%;
-}
 /* border für erstes und letztes element*/
-.food-table, tr:first-child, tr:last-child {
+.food-table, .food-table tr:first-child, .food-table tr:last-child {
     border: 1px solid black;
 }
 /* innen border */
 .food-table td + td,
-th + th { border-left: 1px solid #CCCCCC; }
-tr + tr { border-top: 1px solid #CCCCCC; }
+.food-table th + th { border-left: 1px solid #CCCCCC; }
+.food-table tr + tr { border-top: 1px solid #CCCCCC; }
 
 nav ul {
     list-style: none;
@@ -54,23 +53,9 @@ header > .row {
     padding: 5px;
     margin: 0;
 }
-
 hr {
     margin: 0;
 }
-/*
-#num-table{
-    margin:50px 20px;
-    border:2px black dashed;
-    width:99%
-}
-#num-table:first-child  {
-    width:33%;
-    text-align:center;
-    border-collapse: collapse;
-}
-*/
-
 .num-table {
     width: 85%;
     margin-left: 7.5%;
@@ -82,4 +67,26 @@ hr {
 }
 .num-table th.num-table-besuche, th.num-table-anmeldungen, th.num-table-speisen {
     width: 25%;
+}
+.das-ist-uns-wichtig {
+    justify-content: center;
+}
+.banner {
+    justify-content: center;
+}
+footer li{
+    display: inline;
+    text-decoration: none ;
+    margin: 5px 5px 5px 5px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    border-right:2px #CCCCCC solid;
+}
+footer li:last-child {
+    border: none;
+}
+footer ul {
+    margin-right: 5px;
+    text-align: center;
+    padding-top: 10px;
 }
