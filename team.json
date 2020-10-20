@@ -1,0 +1,16 @@
+{
+  "team" : "INF_E",
+  "mitglieder":
+  [
+    {
+      "matrikelnummer": 3192361,
+      "name": "Philipp Hünnerscheidt ",
+      "ilias" : "ph9060s"
+    },
+    {
+      "matrikelnummer": 3204408,
+      "name": "Haydar Zerelli",
+      "ilias" : "hz8175s"
+    }
+  ]
+}
