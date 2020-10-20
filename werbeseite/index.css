@@ -17,8 +17,6 @@
     text-align: justify;
     padding: 5px;
 }
-
-
 nav ul {
     list-style: none;
 }
@@ -44,4 +42,29 @@ header > .row {
 
 hr {
     margin: 0;
+}
+/*
+#num-table{
+    margin:50px 20px;
+    border:2px black dashed;
+    width:99%
+}
+#num-table:first-child  {
+    width:33%;
+    text-align:center;
+    border-collapse: collapse;
+}
+*/
+
+.num-table {
+    width: 85%;
+    margin-left: 7.5%;
+    margin-right: 7.5%;
+    box-sizing: border-box;
+}
+.num-table th.num-table-x, th.num-table-y, th.num-table-z{
+    width: 5%;
+}
+.num-table th.num-table-besuche, th.num-table-anmeldungen, th.num-table-speisen {
+    width: 25%;
 }
