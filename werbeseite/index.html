@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<!--
+- Praktikum DBWT. Autoren:
+- Haydar, Zerelli, 3204408
+- Hünnerscheidt, Philipp, 3192361
+-->
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -41,7 +46,7 @@
             <div class="col-8">
                 <!-- bild -->
                 <div class="row">
-                    <a href="https://placeholder.com"><img src="https://via.placeholder.com/760x150" alt="Placeholder"></a>
+                    <img src="https://via.placeholder.com/760x150" alt="placeholder">
                 </div>
                 <!-- banner -->
                 <div class="row">
@@ -99,7 +104,40 @@
                     </table>
                 </div>
                 <!-- newsletter -->
-                <div class="row"></div>
+                <div class="row">
+                    <h1>Interesse geweckt? Wir informieren Sie!</h1>
+                    <form name="Anmeldung" action="formdata.html" method="post">
+                        <div class="row">
+                        <ul>
+                            <li>
+                                <label>Ihr Name</label><br>
+                                <input type="text" name="Vorname" id="vorname" placeholder="Bitte geben Sie Ihren Vorname ein">
+                            </li>
+                            <li>
+                                <label>E-mail</label><br>
+                                <input type="text" name="email" id="email" placeholder="Bitte geben Sie Ihre E-mail ein"><br>
+                            </li>
+                            <li>
+                                <label>Newsletter bitte in:</label><br>
+                                <select name="sprache" id="sprache">
+                                    <option value="de">Deutsch</option>
+                                    <option value="en">Enlisch</option>
+                                </select><br>
+                            </li>
+                        </ul>
+                        </div>
+                        <div class="row">
+                        <ul>
+                            <li>
+                                <input type="checkbox" name="DS" id="ds" >Ich Stimme den Datenschutzbestimmungen zu<br>
+                            </li>
+                            <li>
+                                <input type="submit" value="Zum Newsletter anmelden">
+                            </li>
+                        </ul>
+                        </div>
+                    </form>
+                </div>
                 <!-- das ist uns wichtig -->
                 <div class="row">
                     <div class="col-12">
