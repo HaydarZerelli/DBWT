@@ -7,36 +7,19 @@
 .row {
     padding: 20px 0 20px 0;
 }
-.row:first-child{
-    padding: 5px 0 20px 0;
+.row .row .row {
+    padding: 0;
 }
-#logo {
-    width: auto;
-    height: 75px;
+.main {
+    padding: 0;
 }
-#textbox {
-    display: block;
-    border: 1px solid #676767;
-    box-sizing: border-box; /* weil row 100% der breite hat und die border auf die breite addiert wird und sonst nicht
-    dargestellt wird */
-    text-align: justify;
-    padding: 5px;
+hr {
+    margin: 0;
 }
-.food-table {
-    width: 100%;
+header .row {
+    padding: 0;
+    margin: 0;
 }
-.food-table > th {
-    width: 33%;
-}
-/* border für erstes und letztes element*/
-.food-table, tr:first-child, tr:last-child {
-    border: 1px solid black;
-}
-/* innen border */
-.food-table td + td,
-th + th { border-left: 1px solid #CCCCCC; }
-tr + tr { border-top: 1px solid #CCCCCC; }
-
 nav ul {
     list-style: none;
 }
@@ -55,13 +38,35 @@ nav li a:hover {
     background-color: #555;
     color: white;
 }
-header > .row {
+
+#logo {
+    width: auto;
+    height: 75px;
+}
+#textbox {
+    display: block;
+    border: 1px solid #676767;
+    box-sizing: border-box; /* weil row 100% der breite hat und die border auf die breite addiert wird und sonst nicht
+    dargestellt wird */
+    text-align: justify;
     padding: 5px;
-    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
-hr {
-    margin: 0;
+.food-table {
+    width: 100%;
 }
+.food-table > th {
+    width: 33%;
+}
+/* border für erstes und letztes element*/
+.food-table, .food-table tr:first-child, .food-table tr:last-child {
+    border: 1px solid black;
+}
+/* innen border */
+.food-table td + td,
+.food-table th + th { border-left: 1px solid #CCCCCC; }
+.food-table tr + tr { border-top: 1px solid #CCCCCC; }
 
 .num-table {
     width: 85%;
@@ -75,7 +80,20 @@ hr {
 .num-table th.num-table-besuche, th.num-table-anmeldungen, th.num-table-speisen {
     width: 25%;
 }
-.das-ist-uns-wichtig {
+form {
+    width: 100%;
+}
+form ul {
+    list-style: none;
+}
+form li {
+    float: left;
+    padding: 0 10px 0 10px;
+}
+.das-ist-uns-wichtig .row {
+    padding: 0;
+}
+.das-ist-uns-wichtig .list {
     justify-content: center;
 }
 .banner {
@@ -98,14 +116,4 @@ footer ul {
     padding-top: 10px;
 }
 
-form {
-    width: 100%;
-}
-form ul {
-    list-style: none;
-}
-form li {
-    float: left;
-    padding: 0 10px 0 10px;
-}
 

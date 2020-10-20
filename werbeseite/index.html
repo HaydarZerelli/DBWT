@@ -40,7 +40,7 @@
     </header>
     <hr>
     <main>
-        <div class="row">
+        <div class="row main">
             <div class="col-2"></div>
 
             <div class="col-8">
@@ -104,45 +104,47 @@
                     </table>
                 </div>
                 <!-- newsletter -->
-                <div class="row">
-                    <h1>Interesse geweckt? Wir informieren Sie!</h1>
-                    <form name="Anmeldung" action="formdata.html" method="post">
-                        <div class="row">
-                        <ul>
-                            <li>
-                                <label>Ihr Name</label><br>
-                                <input type="text" name="Vorname" id="vorname" placeholder="Bitte geben Sie Ihren Vorname ein">
-                            </li>
-                            <li>
-                                <label>E-mail</label><br>
-                                <input type="text" name="email" id="email" placeholder="Bitte geben Sie Ihre E-mail ein"><br>
-                            </li>
-                            <li>
-                                <label>Newsletter bitte in:</label><br>
-                                <select name="sprache" id="sprache">
-                                    <option value="de">Deutsch</option>
-                                    <option value="en">Enlisch</option>
-                                </select><br>
-                            </li>
-                        </ul>
-                        </div>
-                        <div class="row">
-                        <ul>
-                            <li>
-                                <input type="checkbox" name="DS" id="ds" >Ich Stimme den Datenschutzbestimmungen zu<br>
-                            </li>
-                            <li>
-                                <input type="submit" value="Zum Newsletter anmelden">
-                            </li>
-                        </ul>
-                        </div>
-                    </form>
+                <div class="row newsletter-anmeldung">
+                    <div class="col-12">
+                        <div class="row"><h1>Interesse geweckt? Wir informieren Sie!</h1></div>
+                        <form name="Anmeldung" action="formdata.html" method="post">
+                            <div class="row">
+                            <ul>
+                                <li>
+                                    <label>Ihr Name</label><br>
+                                    <input type="text" name="Vorname" id="vorname" placeholder="Bitte geben Sie Ihren Vorname ein">
+                                </li>
+                                <li>
+                                    <label>E-mail</label><br>
+                                    <input type="text" name="email" id="email" placeholder="Bitte geben Sie Ihre E-mail ein"><br>
+                                </li>
+                                <li>
+                                    <label>Newsletter bitte in:</label><br>
+                                    <select name="sprache" id="sprache">
+                                        <option value="de">Deutsch</option>
+                                        <option value="en">Enlisch</option>
+                                    </select><br>
+                                </li>
+                            </ul>
+                            </div>
+                            <div class="row">
+                            <ul>
+                                <li>
+                                    <input type="checkbox" name="DS" id="ds" >Ich Stimme den Datenschutzbestimmungen zu<br>
+                                </li>
+                                <li>
+                                    <input type="submit" value="Zum Newsletter anmelden">
+                                </li>
+                            </ul>
+                            </div>
+                        </form>
+                    </div>
                 </div>
                 <!-- das ist uns wichtig -->
-                <div class="row">
+                <div class="row das-ist-uns-wichtig">
                     <div class="col-12">
                         <div class="row"><h1>Das ist uns wichtig</h1></div>
-                        <div class="row das-ist-uns-wichtig">
+                        <div class="row list">
                             <ul>
                                 <li>Beste frische saisonale Zutaten</li>
                                 <li>Ausgewogene abwechslungsreiche Gerichte</li>
@@ -164,9 +166,9 @@
         <div class="row">
             <div class="col-12">
                 <ul>
-                    <li>&copy; E-mensa Gmbh</li>
+                    <li>&copy; E-mensa GmbH</li>
                     <li><a href="../Beispiele/Wir_Sind.html">About Us</a></li>
-                    <li>Impressum</li>
+                    <li><a href="#">Impressum</a></li>
                 </ul>
             </div>
         </div>
