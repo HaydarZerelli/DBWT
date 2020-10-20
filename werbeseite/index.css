@@ -107,6 +107,9 @@ footer li{
     padding-bottom: 10px;
     border-right:2px #CCCCCC solid;
 }
+footer li a {
+    color: #00b5ad;
+}
 footer li:last-child {
     border: none;
 }
