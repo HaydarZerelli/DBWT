@@ -17,6 +17,21 @@
     text-align: justify;
     padding: 5px;
 }
+.food-table {
+    width: 100%;
+}
+.food-table > th {
+    width: 33%;
+}
+/* border für erstes und letztes element*/
+.food-table, tr:first-child, tr:last-child {
+    border: 1px solid black;
+}
+/* innen border */
+.food-table td + td,
+th + th { border-left: 1px solid #CCCCCC; }
+tr + tr { border-top: 1px solid #CCCCCC; }
+
 nav ul {
     list-style: none;
 }
