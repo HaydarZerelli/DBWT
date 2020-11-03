@@ -21,7 +21,7 @@
             <div class="row">
                 <!-- E-Mensa Logo -->
                 <div class="col-2">
-                    <a href="index.html">
+                    <a href="index.php">
                         <img id="logo" alt="logo" src="e-mensa_logo.png">
                     </a>
                 </div>
@@ -73,22 +73,28 @@
                             <th class="preis-intern">Preis intern</th>
                             <th class="preis-extern">Preis extern</th>
                         </tr>
-                        <tr>
-                            <td>Rindfleisch mit Bambus, Kaiserschoten und rotem Paprika, dazu Mie Nudeln</td>
-                            <td>3,50</td>
-                            <td>6,20</td>
-                        </tr>
-                        <tr>
-                            <td>Spinatrisotto mit kleinen Samosateigecken und gemischter Salat</td>
-                            <td>2,90</td>
-                            <td>5,30</td>
-                        </tr>
-                        <tr>
-                            <td>...</td>
-                            <td>...</td>
-                            <td>...</td>
-                        </tr>
+                        <?php
+                        $gerichte = unserialize(file_get_contents("./gerichte.txt"));
+
+                        foreach ($gerichte as $gericht) {
+                            echo "<tr>
+                            <td>" . $gericht['desc'] . "</td>
+                            <td>" . $gericht['preis-int'] . "</td>
+                            <td>" . $gericht['preis-ext'] . "</td>
+                            </tr>";
+                        }
+                        ?>
                     </table>
+                    <div class="row">
+                    <?php
+                    foreach ($gerichte as $gericht) {
+                        echo '<div class="col-3">
+                        <img class="food-pic" src="'.$gericht['bild'].'" alt="'.$gericht['desc'].'">
+                        <a>'.$gericht['desc'].'</a>
+                        </div>';
+                    }
+                    ?>
+                    </div>
                 </div>
 
                 <!-- e mensa in zahlen -->

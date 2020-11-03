@@ -68,6 +68,11 @@ nav li a:hover {
 .food-table th + th { border-left: 1px solid #CCCCCC; }
 .food-table tr + tr { border-top: 1px solid #CCCCCC; }
 
+.food-pic {
+    height: auto;
+    width: 100%;
+}
+
 .num-table {
     width: 85%;
     margin-left: 7.5%;
