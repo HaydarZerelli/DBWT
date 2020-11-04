@@ -42,18 +42,18 @@
             <input type="radio" name="Anrede" id="frau" Value="Frau"> Frau<br>
             <input type="radio" name="Anrede" id="herr" Value="Herr"> Herr<br>
             <label>Vorname<sup>*</sup></label><br>
-            <input type="text" name="Vorname" id="vorname" placeholder="Bitte geben Sie Ihren Vorname ein"><br>
+            <input type="text" name="Vorname" id="vorname" placeholder="Bitte geben Sie Ihren Vorname ein" required><br>
             <label>Nachname<sup>*</sup></label><br>
-            <input type="text" name="Nachname" id="nachname" placeholder="Bitte geben Sie Ihren Nachname ein"><br>
+            <input type="text" name="Nachname" id="nachname" placeholder="Bitte geben Sie Ihren Nachname ein" required><br>
             <label>E-mail<sup>*</sup></label><br>
-            <input type="text" name="email" id="email" placeholder="Bitte geben Sie Ihre E-mail ein"><br>
+            <input type="text" name="email" id="email" placeholder="Bitte geben Sie Ihre E-mail ein" required><br>
             <label>Benachrichtigungsinterval</label><br>
             <select name="interval" id="interval">
                 <option value="Tag">Tag</option>
                 <option value="Woche">Woche</option>
                 <option value="Monat">Monat</option>
             </select><br>
-            <input type="checkbox" name="DS" id="ds" >Datenschutzhinweise gelesen<br>
+            <input type="checkbox" name="DS" id="ds" required>Datenschutzhinweise gelesen<br>
             <input type="submit" value="Abschicken">
             <div>*)Eingaben sind Pflicht</div>
         </fieldset>

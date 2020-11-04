@@ -117,16 +117,16 @@
                 <div class="row newsletter-anmeldung">
                     <div class="col-12">
                         <div class="row"><h1>Interesse geweckt? Wir informieren Sie!</h1></div>
-                        <form name="Anmeldung" action="formdata.html" method="post">
+                        <form name="Anmeldung" action="formdata.php" method="post">
                             <div class="row">
                             <ul>
                                 <li>
                                     <label>Ihr Name</label><br>
-                                    <input type="text" name="Vorname" id="vorname" placeholder="Bitte geben Sie Ihren Vorname ein">
+                                    <input type="text" name="vorname" id="vorname" placeholder="Bitte geben Sie Ihren Vorname ein" required>
                                 </li>
                                 <li>
                                     <label>E-mail</label><br>
-                                    <input type="text" name="email" id="email" placeholder="Bitte geben Sie Ihre E-mail ein"><br>
+                                    <input type="text" name="email" id="email" placeholder="Bitte geben Sie Ihre E-mail ein" required><br>
                                 </li>
                                 <li>
                                     <label>Newsletter bitte in:</label><br>
@@ -140,10 +140,10 @@
                             <div class="row">
                             <ul>
                                 <li>
-                                    <input type="checkbox" name="DS" id="ds" >Ich Stimme den Datenschutzbestimmungen zu<br>
+                                    <input type="checkbox" name="ds" id="ds" >Ich Stimme den Datenschutzbestimmungen zu<br>
                                 </li>
                                 <li>
-                                    <input type="submit" value="Zum Newsletter anmelden" disabled>
+                                    <input type="submit" value="Zum Newsletter anmelden">
                                 </li>
                             </ul>
                             </div>
