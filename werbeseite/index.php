@@ -113,43 +113,100 @@
                     </table>
                 </div>
                 <!-- newsletter -->
-
                 <div class="row newsletter-anmeldung">
                     <div class="col-12">
                         <div class="row"><h1>Interesse geweckt? Wir informieren Sie!</h1></div>
-                        <form name="Anmeldung" action="formdata.php" method="post">
+                        <form name="Anmeldung" method="post" target="_self" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                            <?php
+                            $fehler = array();
+                            $email = $_POST['email'] ?? NULL;
+                            $name = $_POST['vorname'] ?? NULL;
+                            $ds = $_POST['ds'] ?? NULL;
+                            $sprache = $_POST['sprache'] ?? NULL;
+
+                            if (isset($_POST['submitted'])) {
+
+                                $name = trim($name);
+                                if (empty($name)) {
+                                    array_push($fehler, "Name darf nicht leer sein!");
+                                }
+                                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                                    array_push($fehler, "E-Mail Adresse ung&uuml;ltig!");
+                                }
+                                if (!$ds) {
+                                    array_push($fehler, "Datenschutzbestimmung nicht akzeptiert!");
+                                }
+
+                                $exp = array("/@rcpt.at/i", "/@damnthespam.at/i", "/@wegwerfmail.de/i", "/@trashmail./i");
+                                foreach ($exp as $e) {
+                                    if (preg_match($e, $email)) {
+                                        array_push($fehler, "E-Mail Adresse als Spammail erkannt!");
+                                        break;
+                                    }
+                                }
+                            }
+                            ?>
+                            <?php if ($fehler) {
+                                echo '<div class="row">
+                        <p>Fehler bei der Anmeldung:</p>
+                        <ul>';
+                                foreach ($fehler as $f) {
+                                    echo '<li>'.$f.'</li>';
+                                }
+                                echo '</ul></div>';
+                            }?>
                             <div class="row">
-                            <ul>
-                                <li>
-                                    <label>Ihr Name</label><br>
-                                    <input type="text" name="vorname" id="vorname" placeholder="Bitte geben Sie Ihren Vorname ein" required>
-                                </li>
-                                <li>
-                                    <label>E-mail</label><br>
-                                    <input type="text" name="email" id="email" placeholder="Bitte geben Sie Ihre E-mail ein" required><br>
-                                </li>
-                                <li>
-                                    <label>Newsletter bitte in:</label><br>
-                                    <select name="sprache" id="sprache">
-                                        <option value="de">Deutsch</option>
-                                        <option value="en">Enlisch</option>
-                                    </select><br>
-                                </li>
-                            </ul>
+                                <ul>
+                                    <li>
+                                        <label>Ihr Name</label><br>
+                                        <input type="text" name="vorname" id="vorname" placeholder="Bitte geben Sie Ihren Vorname ein"
+                                               <?php if ($_POST && isset($_POST['vorname'])) {
+                                                   echo 'value="'.htmlspecialchars($_POST['vorname']).'"';
+                                               }?> required>
+                                    </li>
+                                    <li>
+                                        <label>E-mail</label><br>
+                                        <input type="text" name="email" id="email" placeholder="Bitte geben Sie Ihre E-mail ein"
+                                               <?php if ($_POST && isset($_POST['email'])) {
+                                                   echo 'value="'.htmlspecialchars($_POST['email']).'"';
+                                               }?> required><br>
+                                    </li>
+                                    <li>
+                                        <label>Newsletter bitte in:</label><br>
+                                        <select name="sprache" id="sprache">
+                                            <option value="de">Deutsch</option>
+                                            <option value="en">Enlisch</option>
+                                        </select><br>
+                                    </li>
+                                </ul>
                             </div>
                             <div class="row">
-                            <ul>
-                                <li>
-                                    <input type="checkbox" name="ds" id="ds" >Ich Stimme den Datenschutzbestimmungen zu<br>
-                                </li>
-                                <li>
-                                    <input type="submit" value="Zum Newsletter anmelden">
-                                </li>
-                            </ul>
+                                <ul>
+                                    <li>
+                                        <input type="checkbox" name="ds" id="ds" >Ich Stimme den Datenschutzbestimmungen zu<br>
+                                    </li>
+                                    <li>
+                                        <input type="hidden" name="submitted" value="1">
+                                        <input type="submit" value="Zum Newsletter anmelden">
+                                    </li>
+                                </ul>
                             </div>
+                            <?php if ($_POST && empty($fehler)) {
+                                $data = $name . "," . $email . "," . $sprache . "\n";
+                                if (file_put_contents("./newsletterdata.csv", $data, FILE_APPEND | LOCK_EX)) {
+                                    echo '<div class="row">
+                                            <p>Sie haben sich erfolgreich zum Newsletter angemeldet!</p>
+                                          </div>';
+                                } else {
+                                    echo '<div class="row">
+                                            <p>Ups! Es ist ein Fehler aufgetreten, versuchen Sie es erneut!</p>
+                                          </div>';
+                                }
+                            } ?>
                         </form>
                     </div>
                 </div>
+
                 <!-- das ist uns wichtig -->
                 <a name="wichtig-fuer-uns"></a>
                 <div class="row das-ist-uns-wichtig">
