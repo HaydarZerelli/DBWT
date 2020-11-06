@@ -69,8 +69,9 @@ nav li a:hover {
 .food-table tr + tr { border-top: 1px solid #CCCCCC; }
 
 .food-pic {
-    height: auto;
+    height: 150px;
     width: 100%;
+    object-fit: cover;
 }
 
 .num-table {
