@@ -3,6 +3,27 @@ const GET_PARAM_MIN_STARS = 'search_min_stars';
 const GET_PARAM_SEARCH_TEXT = 'search_text';
 const GET_PARAM_AUTHOR = 'search_author';//Eingefügt um der Author zu suchen.
 const GET_PARAM_DESCRIPTION ='show_description';
+const GET_PARAM_LANG = 'sprache';
+
+$sprache_gesetzt = false;
+if (isset($_GET['submitted']) && $_GET['submitted'] == 1) {
+    $sprache_gesetzt = true;
+}
+if (!$sprache_gesetzt) {
+    $sprache = "de";
+}
+if (isset($_GET[GET_PARAM_LANG])) {
+    $sprache = $_GET[GET_PARAM_LANG];
+}
+$zeigBeschreibung = 0;
+if (isset($_GET[GET_PARAM_DESCRIPTION])) {
+    $zeigBeschreibung = $_GET[GET_PARAM_DESCRIPTION];
+}
+$search_text ="";
+if (isset($_GET[GET_PARAM_SEARCH_TEXT])) {
+    $search_text = $_GET[GET_PARAM_SEARCH_TEXT];
+}
+
 /**
  * Liste aller möglichen Allergene.
  */
@@ -35,6 +56,37 @@ $ratings = [
         'author' => 'Marta M.',
         'stars' => 3 ]
 ];
+
+$translation["de"]["gericht"] = "Gericht";
+$translation["en"]["gericht"] = "Meal";
+
+$translation["de"]["nurfuer"] = "f&uuml;r nur ";
+$translation["en"]["nurfuer"] = "for only ";
+
+$translation["de"]["fuer"] = "f&uuml;r";
+$translation["en"]["fuer"] = "for";
+
+$translation["de"]["und"] = "und";
+$translation["en"]["und"] = "and";
+
+$translation["de"]["interne"] = "Interne";
+$translation["en"]["interne"] = "members";
+
+$translation["de"]["externe"] = "Externe";
+$translation["en"]["externe"] = "non members";
+
+$translation["de"]["description_show"]="Beschreibung zeigen";
+$translation["en"]["description_show"]="show description";
+
+$translation["de"]["description_hide"]="Beschreibung verbergen";
+$translation["en"]["description_hide"]="hide description";
+
+$translation["de"]["bewertung"]="Bewertung (Insgesamt";
+$translation["en"]["bewertung"]="Feedback (Total";
+
+$translation["de"]["suchen"]="Suchen";
+$translation["en"]["suchen"]="Search";
+
 
 $showRatings = [];
 if (!empty($_GET[GET_PARAM_SEARCH_TEXT])) {
@@ -76,32 +128,12 @@ foreach ($meal['allergens'] as $allerg){
     $showAllergene[]=$allergens["$allerg"];
 }
 
-if ($_GET["sprache"] == "" && $GET_PARAM_LANG="")
-{$GET_PARAM_LANG = "de";}
-else if ($_GET["sprache"] == "de")
-{$GET_PARAM_LANG="de";}
-else if ($_GET["sprache"] == "en")
-{$GET_PARAM_LANG="en";}
-else {$GET_PARAM_LANG="de";}
-$translation["de"]["description_show"]="Beschreibung zeigen";
-$translation["en"]["description_show"]="show description";
-
-$translation["de"]["description_hide"]="Beschreibung verbergen";
-$translation["en"]["description_hide"]="hide description";
-
-$translation["de"]["bewertung"]="Bewertung (Insgesamt";
-$translation["en"]["bewertung"]="Feedback (Total";
-
-$translation["de"]["suchen"]="Suchen";
-$translation["en"]["suchen"]="Search";
-
-
 ?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8"/>
-    <title>Gericht: <?php echo $meal['name'];?></title>
+    <title><?php echo $translation[$sprache]['gericht'].' : '. $meal['name'];?></title>
     <style type="text/css">
         * {
             font-family: Arial, serif;
@@ -112,38 +144,59 @@ $translation["en"]["suchen"]="Search";
         input[id="search_text"] {
             value : <?php GET_PARAM_SEARCH_TEXT ?>
         }
+        #lang-link li {
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
-<ul style=" padding:0; ">
-    <li style=" display:inline-block; "><a href="?sprache=de" >Deutsch</a></li> |
-    <li style="display:inline-block;" ><a href="?sprache=en" >Englisch</a></li>
+<!--
+<form method="get" action="meal.php">
+    <select name="sprache">
+        <option value="de">deutsch</option>
+        <option value="en">english</option>
+    </select>
+    <input type="hidden" name="submitted" value="1">
+    <button type="submit">submit</button>
+</form>-->
+<ul id="lang-link">
+    <li><a href="?sprache=de" >Deutsch</a></li> |
+    <li><a href="?sprache=en" >Englisch</a></li>
 </ul>
-<?php //echo $_SERVER["REQUEST_URI"];     ?>
-<?php //echo $GET_PARAM_LANG; ?>
-<h1>Gericht: <?php echo $meal['name']; ?> nur für <?php echo number_format($meal['price_extern'],2) ?>  &euro; für Externe und <?php echo number_format($meal['price_intern'],2)?> &euro; für Interne</h1>
 
- <?php  if ($_GET[GET_PARAM_DESCRIPTION] == "" || $_GET[GET_PARAM_DESCRIPTION]== "0" ){
- ?>  <a href="?sprache=<?php echo $GET_PARAM_LANG; ?>&show_description=1" ><?php echo $translation[$GET_PARAM_LANG]["description_show"]; ?></a> <?php
+
+<h1><?php echo $translation[$sprache]['gericht'].' : '. $meal['name'].' '.$translation[$sprache]['nurfuer'].' '.number_format($meal['price_extern'],2). '&euro; '
+        .$translation[$sprache]['fuer'].' '.$translation[$sprache]['externe'].' '.$translation[$sprache]["und"].' ' .number_format($meal['price_intern'],2). ' &euro; '.$translation[$sprache]['fuer'].' '
+        .$translation[$sprache]['interne'] .'</h1>';
+ ?>
+
+
+<?php
+
+if (!$zeigBeschreibung){
+  echo '<a href="?sprache='.$sprache.'&show_description=1">'.$translation[$sprache]["description_show"].'</a>';
 }
 else {
- ?> <a href="?sprache=<?php echo $GET_PARAM_LANG; ?>&show_description=0" ><?php echo $translation[$GET_PARAM_LANG]["description_hide"]; ?></a> <?php
+  echo '<a href="?sprache='.$sprache.'&show_description=0">'.$translation[$sprache]["description_hide"].'</a>';
 }
 ?>
 
-<p> <?php if ($_GET[GET_PARAM_DESCRIPTION] == 1){
+<p> <?php if ($zeigBeschreibung){
         echo $meal['description'];
     } ?></p>
-<h1><?php echo $translation[$GET_PARAM_LANG]["bewertung"]; ?> : <?php echo calcMeanStars($ratings); ?>)</h1>
+<h1><?php echo $translation[$sprache]["bewertung"]; ?> : <?php echo calcMeanStars($ratings); ?>)</h1>
+
+
+
 <form method="get">
     <label for="search_text">Filter:</label>
-    <input id="search_text" type="text" name="search_text" value= <?php echo $_GET[GET_PARAM_SEARCH_TEXT] ?> >
-    <input type="submit" value="<?php echo $translation[$GET_PARAM_LANG]["suchen"]; ?>">
+    <input id="search_text" type="text" name="search_text" value="<?php echo $search_text?>" >
+    <input type="submit" value="<?php echo $translation[$sprache]["suchen"]; ?>">
 </form>
 
             <table class="rating" id="de">
                 <thead>
-                <?php if ($GET_PARAM_LANG == "de") {
+                <?php if ($sprache == "de") {
                     ?>
                 <tr>
                     <td>Text</td>
