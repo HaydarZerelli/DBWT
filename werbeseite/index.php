@@ -4,6 +4,11 @@
 - Haydar, Zerelli, 3204408
 - Hünnerscheidt, Philipp, 3192361
 -->
+<?php
+$visit_count = unserialize(file_get_contents("./visits.txt"));
+$visit_count = $visit_count + 1;
+file_put_contents("./visits.txt", serialize($visit_count));
+?>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -103,11 +108,11 @@
                     <h1>E-Mensa in Zahlen</h1>
                     <table class="num-table">
                         <tr>
-                            <th class="num-table-x">X</th>
+                            <th class="num-table-x"><?php echo $visit_count;?></th>
                             <th class="num-table-besuche">Besuche</th>
-                            <th class="num-table-y">Y</th>
+                            <th class="num-table-y"><?php echo count(file("./newsletterdata.csv"));?></th>
                             <th class="num-table-anmeldungen">Anmeldungen zum Newsletter</th>
-                            <th class="num-table-z">Z</th>
+                            <th class="num-table-z"><?php echo count($gerichte); ?></th>
                             <th class="num-table-speisen">Speisen</th>
                         </tr>
                     </table>

@@ -9,8 +9,7 @@ if(!$file) {
     die("öffnen fehlgeschlagen!");
 }
 date_default_timezone_set('UTC');
-$log = "date: " . date('d-m-Y  H:i:s') . " user-agent: " . $_SERVER['HTTP_USER_AGENT']
-    . " IP-Address: " . $_SERVER['REMOTE_ADDR'];
+$log = ['date' => date('d-m-Y  H:i:s'), 'user-agent' => $_SERVER['HTTP_USER_AGENT'], 'IP' => $_SERVER['REMOTE_ADDR']];
 fwrite($file, $log);
 fclose($file);
 ?>
