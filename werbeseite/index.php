@@ -197,7 +197,7 @@ file_put_contents("./visits.txt", serialize($visit_count));
                                 </ul>
                             </div>
                             <?php if ($_POST && empty($fehler)) {
-                                $data = $name . "," . $email . "," . $sprache . "\n";
+                                $data = $name . "," . $email . "," . $sprache . ",". $ds. "\n";
                                 if (file_put_contents("./newsletterdata.csv", $data, FILE_APPEND | LOCK_EX)) {
                                     echo '<div class="row">
                                             <p>Sie haben sich erfolgreich zum Newsletter angemeldet!</p>
