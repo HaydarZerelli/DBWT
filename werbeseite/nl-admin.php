@@ -29,9 +29,7 @@ if(isset($_GET[GET_PARAM_NAME]))
     <title>Admin-Tool</title>
     <style type="text/css">
         table, th, td {
-            border: 1px solid blue;
-            background-color: #f58787;
-            border-color: #b2b2f1;
+            border: 1px solid black;
         }
 
     </style>
