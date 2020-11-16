@@ -1,6 +1,6 @@
 <?php
 $gerichte = [
-  ['desc' => "Rindfleisch mit Bambus, Kaiserschoten und rotem Paprika, dazu Mie Nudeln",
+  ['desc' => "Rindfleisch mit Bambus, Kaiserschoten und rotem Paprika, dazu Mit Nudeln",
       'preis-ext' => 6.20, 'preis-int' => 3.50, 'bild' => "./img/rindfleisch-asia.jpg"
       ],
     ['desc' => "Spinatrisotto mit kleinen Samosateigecken und gemischter Salat",
