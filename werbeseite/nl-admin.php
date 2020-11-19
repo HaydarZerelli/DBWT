@@ -15,7 +15,7 @@ foreach($file as $l) {
 }
 
 $name = array_column($sort, 0);
-
+$email = array_column($sort, 1);
 if(isset($_GET[GET_PARAM_NAME]))
 {
     $b = $_GET[GET_PARAM_NAME];
@@ -44,7 +44,6 @@ if(isset($_GET[GET_PARAM_NAME]))
 
     <label for="search_name">Filter:</label>
     <input id="search_text" type="text" name="search_name" value="<?=htmlspecialchars($b);?>">
-
     <input type="submit">
     <table>
         <th>Nachname</th> <th>E-Mail Adresse</th> <th>Sprache</th> <th>Datenschutzstatus</th>
@@ -69,15 +68,10 @@ if(isset($_GET[GET_PARAM_NAME]))
                         "<td><center>$index[3]</center></td>".
                         "</tr>";
                 }
-
-
         '</tr>';
-
         '<tr>';
             }
             else  {
-                $email = array_column($sort, 1);
-
                 foreach ($sort as $form) {
                     if (!isset($_GET[GET_PARAM_SEARCH_NAME]) && !isset($_GET[GET_PARAM_SEARCH_EMAIL])) {
                         echo "<tr>",
