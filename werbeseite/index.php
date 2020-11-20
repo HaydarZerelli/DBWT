@@ -5,6 +5,8 @@
 - Hünnerscheidt, Philipp, 3192361
 -->
 <?php
+// jedes mal wenn die seite aufgerufen wird / neugeladen wird, wird der aktuelle counter stand
+// aus der Datei visits.txt gelesen, um 1 erhöht und wieder in die Datei geschrieben.
 $visit_count = unserialize(file_get_contents("./visits.txt"));
 $visit_count = $visit_count + 1;
 file_put_contents("./visits.txt", serialize($visit_count));
@@ -82,8 +84,9 @@ $result_allergen = mysqli_query($link, $allergentable);
     <hr>
     <main>
         <div class="row main">
+            <!-- leere spalte links -->
             <div class="col-2"></div>
-
+            <!-- mittlere spalte mit inhalt der seite -->
             <div class="col-8">
                 <!-- bild -->
                 <div class="row">
@@ -104,7 +107,7 @@ $result_allergen = mysqli_query($link, $allergentable);
                         C/O https://placeholder.com/text/lorem-ipsum/
                     </p>
                 </div>
-                <!-- speisen table -->
+                <!-- speisen tabelle -->
                 <a name="speisen"></a>
                 <div class="row">
                     <h1>K&ouml;stlichkeiten, die Sie erwarten</h1>
@@ -135,6 +138,7 @@ $result_allergen = mysqli_query($link, $allergentable);
                         echo "</ul>";
                         ?>
                     </div>
+                    <!-- bilder zu den gerichten -->
                     <div class="row">
                     <?php
                     foreach ($gerichte as $gericht) {
@@ -176,7 +180,7 @@ $result_allergen = mysqli_query($link, $allergentable);
 
                             if (isset($_POST['submitted'])) {
 
-                                $name = trim($name);
+                                $name = trim($name); //entfernt alle whitespaces
                                 if (empty($name)) {
                                     array_push($fehler, "Name darf nicht leer sein!");
                                 }
@@ -195,11 +199,11 @@ $result_allergen = mysqli_query($link, $allergentable);
                                     }
                                 }
                             }
-                            ?>
-                            <?php if ($fehler) {
+                            // gibt fehler aus in einer ul
+                            if ($fehler) {
                                 echo '<div class="row">
-                        <p>Fehler bei der Anmeldung:</p>
-                        <ul>';
+                                    <p>Fehler bei der Anmeldung:</p>
+                                    <ul>';
                                 foreach ($fehler as $f) {
                                     echo '<li>'.$f.'</li>';
                                 }
@@ -274,7 +278,7 @@ $result_allergen = mysqli_query($link, $allergentable);
                 <!-- banner -->
                 <div class="row banner"><h1>Wir freuen uns auf Ihren Besuch!</h1></div>
             </div>
-
+            <!-- leere spalte rechts -->
             <div class="col-2"></div>
         </div>
 

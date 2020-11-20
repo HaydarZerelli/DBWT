@@ -16,5 +16,5 @@ $gerichte = [
         'preis-ext' => 3.50, 'preis-int' => 2.10, 'bild' => "./img/pfannkuchen.jpg"
     ]
 ];
-
+// serialisiere $gerichte und schreibe ergebnis in /gerichte.txt
 file_put_contents("./gerichte.txt",serialize($gerichte));
