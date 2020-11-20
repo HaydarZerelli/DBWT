@@ -29,21 +29,21 @@ $result = $link -> query($sql);
     </style>
 </head>
 <body>
-    <table>
-        <th>Name des Gerichts</th> <th>Beschreibung des Gerichts</th>
-        <tr>
-            <?php
-            echo "<caption><b>".'Angebotene Gerichte'."</b></caption>";
-            while ($row = mysqli_fetch_assoc($result)) {
+<table>
+    <th>Name des Gerichts</th> <th>Beschreibung des Gerichts</th>
+    <tr>
+        <?php
+        echo "<caption><b>".'Angebotene Gerichte'."</b></caption>";
+        while ($row = mysqli_fetch_assoc($result)) {
             $name = $row['name'];
             $beschreibung = $row['beschreibung'];
-                echo "<tr>",
-                         "<td><center>".$name."</center></td>" .
-                        "<td><center>".$beschreibung."</center></td>" ;
-                    "</tr>";
-            }
-            ?>
-        </tr>
-    </table>
+            echo "<tr>",
+                "<td><center>".$name."</center></td>" .
+                "<td><center>".$beschreibung."</center></td>" .
+                "</tr>";
+        }
+        ?>
+    </tr>
+</table>
 </body>
 </html>

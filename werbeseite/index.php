@@ -8,6 +8,42 @@
 $visit_count = unserialize(file_get_contents("./visits.txt"));
 $visit_count = $visit_count + 1;
 file_put_contents("./visits.txt", serialize($visit_count));
+
+//***************************************************************************************************************
+$link = mysqli_connect("127.0.0.1", // Host der Datenbank
+    "root",                         // Benutzername zur Anmeldung
+    "08101995",                 // Passwort
+    "db_emensawerbeseite"   // Auswahl der Datenbanken (bzw. des Schemas)
+);
+
+if (!$link) {
+    echo "Verbindung fehlgeschlagen: ", mysqli_connect_error();
+    exit();
+}
+$mysqli= "SELECT gericht.name, GROUP_CONCAT(gericht_hat_allergen.code), preis_intern, preis_extern
+                FROM gericht
+                JOIN gericht_hat_allergen ON gericht_hat_allergen.id = gericht.id
+                GROUP BY gericht.name
+                Order by gericht.name           
+                ASC LIMIT 5 OFFSET 0;
+                ";
+$result = mysqli_query($link, $mysqli);
+if (!$result) {
+    echo "Fehler während der Abfrage:  ", mysqli_error($link);
+    exit();
+}
+$allergentable = "
+                SELECT
+                gericht.name, GROUP_CONCAT(allergen.name)
+                FROM
+                ((gericht_hat_allergen
+                INNER JOIN allergen on gericht_hat_allergen.code = allergen.code)
+                RIGHT JOIN gericht on gericht_hat_allergen.id = gericht.id)
+                GROUP BY gericht.name
+                Order by gericht.name
+                ASC LIMIT 5 OFFSET 0;
+                ";
+$result_allergen = mysqli_query($link, $allergentable);
 ?>
 <html lang="en">
 <head>
@@ -74,22 +110,31 @@ file_put_contents("./visits.txt", serialize($visit_count));
                     <h1>K&ouml;stlichkeiten, die Sie erwarten</h1>
                     <table class="food-table">
                         <tr>
-                            <th class="dish"></th>
+                            <th class="dish">Gericht</th>
                             <th class="preis-intern">Preis intern</th>
                             <th class="preis-extern">Preis extern</th>
                         </tr>
                         <?php
                         $gerichte = unserialize(file_get_contents("./gerichte.txt"));
-
-                        foreach ($gerichte as $gericht) {
+                        while ($row = mysqli_fetch_assoc($result)) {
                             echo "<tr>
-                            <td>" . $gericht['desc'] . "</td>
-                            <td>" . $gericht['preis-int'] . "</td>
-                            <td>" . $gericht['preis-ext'] . "</td>
-                            </tr>";
+                                <td>".$row['name']."<sup>".$row['GROUP_CONCAT(gericht_hat_allergen.code)']."</sup></td>
+                                <td>" . $row['preis_intern'] . "</td>
+                                <td>" . $row['preis_extern'] . "</td>
+                                </tr>";
                         }
                         ?>
                     </table>
+                    <div>
+                        <?php
+                        echo "Liste von Allergien";
+                        echo "<ul>";
+                        while ($row_allergen = mysqli_fetch_assoc($result_allergen)) {
+                            echo "<li>", $row_allergen['GROUP_CONCAT(allergen.name)'], "</li>";
+                        }
+                        echo "</ul>";
+                        ?>
+                    </div>
                     <div class="row">
                     <?php
                     foreach ($gerichte as $gericht) {
