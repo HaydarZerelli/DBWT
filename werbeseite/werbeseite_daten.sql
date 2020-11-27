@@ -2,7 +2,7 @@
 
 USE db_emensawerbeseite;
 
-INSERT INTO `Allergen` (`code`, `name`, `typ`) VALUES
+INSERT INTO `allergen` (`code`, `name`, `typ`) VALUES
 	('a', 'Getreideprodukte', 'Getreide (Gluten)'),
 	('a1', 'Weizen', 'Allergen'),
 	('a2', 'Roggen', 'Allergen'),
@@ -25,7 +25,7 @@ INSERT INTO `Allergen` (`code`, `name`, `typ`) VALUES
 	('h3', 'Walnüsse', 'Allergen'),
 	('i', 'Erdnüsse', 'Allergen');
 
-INSERT INTO `Gericht` (`id`, `name`, `beschreibung`, `erfasst_am`, `vegan`, `vegetarisch`, `preis_intern`, `preis_extern`) VALUES
+INSERT INTO `gericht` (`id`, `name`, `beschreibung`, `erfasst_am`, `vegan`, `vegetarisch`, `preis_intern`, `preis_extern`) VALUES
 	(1, 'Bratkartoffeln mit Speck und Zwiebeln', 'Kartoffeln mit Zwiebeln und gut Speck', '2020-08-25', 0, 0, 2.3, 4),
 	(3, 'Bratkartoffeln mit Zwiebeln', 'Kartoffeln mit Zwiebeln und ohne Speck', '2020-08-25', 1, 1, 2.3, 4),
 	(4, 'Grilltofu', 'Fein gewürzt und mariniert', '2020-08-25', 1, 1, 2.5, 4.5),

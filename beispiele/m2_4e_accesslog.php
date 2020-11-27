@@ -12,4 +12,6 @@ date_default_timezone_set('UTC');
 $log = ['date' => date('d-m-Y  H:i:s'), 'user-agent' => $_SERVER['HTTP_USER_AGENT'], 'IP' => $_SERVER['REMOTE_ADDR']];
 fwrite($file, $log);
 fclose($file);
+
+var_dump(date('d-m-Y  H:i:s'));
 ?>

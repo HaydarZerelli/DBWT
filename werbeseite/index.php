@@ -14,7 +14,8 @@ file_put_contents("./visits.txt", serialize($visit_count));
 //***************************************************************************************************************
 $link = mysqli_connect("127.0.0.1", // Host der Datenbank
     "root",                         // Benutzername zur Anmeldung
-    "08101995",                 // Passwort
+    //"08101995",                 // Passwort
+    "elx8068",
     "db_emensawerbeseite"   // Auswahl der Datenbanken (bzw. des Schemas)
 );
 
