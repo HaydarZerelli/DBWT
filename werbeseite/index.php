@@ -14,8 +14,8 @@ file_put_contents("./visits.txt", serialize($visit_count));
 //***************************************************************************************************************
 $link = mysqli_connect("127.0.0.1", // Host der Datenbank
     "root",                         // Benutzername zur Anmeldung
-    //"08101995",                 // Passwort
-    "elx8068",
+    "08101995",                 // Passwort
+
     "db_emensawerbeseite"   // Auswahl der Datenbanken (bzw. des Schemas)
 );
 
@@ -150,6 +150,12 @@ $result_allergen = mysqli_query($link, $allergentable);
                     }
                     ?>
                     </div>
+                </div>
+
+                <!-- Wunschgericht link -->
+                <div class="row wunschgericht">
+                    <h2>Was ist Ihr Wunschgericht?</h2><br>
+                    <p>Tragen Sie es <a href="wunschgericht.php" target="_blank">hier</a> ein und vielleicht gibt es Ihr Wunschgericht auch bald bei uns.</p>
                 </div>
 
                 <!-- e mensa in zahlen -->

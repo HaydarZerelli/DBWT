@@ -1,5 +1,5 @@
 <?php
-var_dump($_POST);
+
 $mysqli = new mysqli("127.0.0.1",
     "root",
     "08101995",
@@ -16,7 +16,7 @@ $name = $_POST['name'] ?? NULL;
 $gericht = $_POST['gericht'] ?? NULL;
 $beschreibung = $_POST['desc'] ?? NULL;
 $email_ok = true;
-var_dump(date('Y-m-d'));
+
 if (isset($_POST['submitted'])) {
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
         $email_ok = false;
@@ -34,9 +34,16 @@ if (isset($_POST['submitted'])) {
     if ($email_ok) {
         $statement = $mysqli->stmt_init();
         $date = date('Y-m-d');
-        $statement = $mysqli->prepare("INSERT INTO wunschgerichte (name, beschreibung, erstellungs_datum, ersteller, email) VALUE (?,?,?,?,?)");
+        if(!empty($name)) {
+            $statement = $mysqli->prepare("INSERT INTO wunschgerichte (name, beschreibung, erstellungs_datum, ersteller, email) VALUE (?,?,?,?,?)");
+            $statement->bind_param('sssss', $gericht, $beschreibung, $date, $name, $email);
+
+        } else {
+            $statement = $mysqli->prepare("INSERT INTO wunschgerichte (name, beschreibung, erstellungs_datum, email) VALUE (?,?,?,?)");
+            $statement->bind_param('ssss', $gericht, $beschreibung, $date, $email);
+
+        }
         var_dump($statement);
-        $statement->bind_param('sssss', $gericht, $beschreibung, $date, $name, $email);
         $statement->execute();
         $result = $statement->get_result();
         printf("%d Zeile eingefügt.\n", $statement->affected_rows);
@@ -45,7 +52,7 @@ if (isset($_POST['submitted'])) {
 
 }
 if ($fehler) {
-    echo '<div class="row"><p>Fehler bei der Anmeldung:</p><ul>';
+    echo '<div class="row"><p>Ein Fehler ist aufgetreten:</p><ul>';
     foreach ($fehler as $f) {
         echo '<li>'.$f.'</li>';
     }
