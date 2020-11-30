@@ -13,3 +13,13 @@ function db_kategorie_select_all() {
     mysqli_close($link);
     return $data;
 }
+function db_kategorie_select_all_names() {
+    $link = connectdb();
+
+    $sql = "SELECT name FROM kategorie";
+    $result = mysqli_query($link, $sql);
+    $data = mysqli_fetch_all($result, MYSQLI_BOTH);
+    mysqli_close($link);
+    return $data;
+
+}

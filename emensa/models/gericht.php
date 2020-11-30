@@ -13,3 +13,11 @@ function db_gericht_select_all() {
     mysqli_close($link);
     return $data;
 }
+function db_gericht_select_pig2() {
+    $link = connectdb();
+    $sql = "SELECT name, preis_intern From gericht WHERE preis_intern > 2 ORDER BY name DESC";
+    $result = mysqli_query($link, $sql);
+    $data= mysqli_fetch_all($result, MYSQLI_BOTH);
+    mysqli_close($link);
+    return $data;
+}
