@@ -37,27 +37,24 @@ CREATE TABLE kategorie (
 DROP TABLE IF EXISTS `gericht_hat_allergen`;
 CREATE TABLE gericht_hat_allergen (
     code char(4),
-    foreign key (code) references allergen(code)
-            on delete cascade
-            on update cascade,
+    constraint fk_allergen_gha
+    foreign key (code) references allergen(code),
     id bigint not null,
-    foreign key (id) references gericht(id)
-            on delete cascade
-            on update cascade,
+    constraint fk_gericht_gha
+    foreign key (id) references gericht(id),
+    constraint pk_gericht_hat_allergen
     primary key(code, id)
 );
 
 DROP TABLE IF EXISTS `gericht_hat_kategorie`;
 CREATE TABLE gericht_hat_kategorie (
     kategorie_id bigint not null,
+    constraint fk_kategorie_ghk
     foreign key (kategorie_id) references kategorie(id)
-            on delete cascade
-            on update cascade,
+            ,
     gericht_id bigint not null,
+    constraint fk_gericht_ghk
     foreign key (gericht_id) references gericht(id)
-            on delete cascade
-            on update cascade,
-    primary key(kategorie_id, gericht_id)
 );
 
 DROP TABLE IF EXISTS `wunschgerichte`;
@@ -69,3 +66,28 @@ CREATE TABLE wunschgerichte (
     email varchar(320) not null,
     ersteller varchar(20) default 'anonym'
 );
+
+ALTER TABLE gericht ADD INDEX idx_gericht_name (name);
+alter table gericht_hat_allergen drop constraint if exists fk_gericht_gha;
+alter table gericht_hat_allergen add constraint fk_gericht_gha
+    foreign key (id) references gericht(id)
+        on delete cascade on update cascade;
+alter table gericht_hat_kategorie drop constraint if exists fk_gericht_ghk;
+alter table gericht_hat_kategorie add constraint fk_gericht_ghk
+    foreign key (gericht_id) references gericht(id)
+        on delete cascade on update cascade;
+alter table gericht_hat_kategorie drop constraint if exists fk_kategorie_ghk;
+alter table gericht_hat_kategorie add constraint fk_kategorie_ghk
+    foreign key (kategorie_id) references kategorie(id)
+        on delete no action on update cascade;
+alter table kategorie drop constraint if exists fk_kategorie_eltern_kategorie;
+alter table kategorie add constraint fk_kategorie_eltern_kategorie
+    foreign key (eltern_id) references kategorie(id)
+        on delete no action on update cascade;
+alter table gericht_hat_allergen drop constraint if exists fk_allergen_gha;
+alter table gericht_hat_allergen add constraint fk_allergen_gha
+    foreign key (code) references allergen(code)
+        on delete cascade on update cascade;
+alter table gericht_hat_kategorie drop constraint if exists pk_gericht_hat_kategorie;
+alter table gericht_hat_kategorie add constraint pk_gericht_hat_kategorie
+    primary key(kategorie_id, gericht_id);
