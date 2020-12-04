@@ -25,7 +25,7 @@ if (!$link) {
 }
 $mysqli= "SELECT gericht.name, GROUP_CONCAT(gericht_hat_allergen.code), preis_intern, preis_extern
                 FROM gericht
-                JOIN gericht_hat_allergen ON gericht_hat_allergen.id = gericht.id
+                LEFT JOIN gericht_hat_allergen ON gericht_hat_allergen.id = gericht.id
                 GROUP BY gericht.name
                 Order by gericht.name           
                 ASC LIMIT 5 OFFSET 0;
@@ -59,7 +59,7 @@ $result_allergen = mysqli_query($link, $allergentable);
     <title>E-Mensa</title>
 </head>
 <body>
-    <div class="container">
+<div class="container">
     <header>
         <nav>
             <div class="row">
@@ -101,9 +101,9 @@ $result_allergen = mysqli_query($link, $allergentable);
                 <!-- text box -->
                 <div class="row" id="textbox">
                     <p>Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
                         culpa qui officia deserunt mollit anim id est laborum.
                         C/O https://placeholder.com/text/lorem-ipsum/
                     </p>
@@ -141,14 +141,14 @@ $result_allergen = mysqli_query($link, $allergentable);
                     </div>
                     <!-- bilder zu den gerichten -->
                     <div class="row">
-                    <?php
-                    foreach ($gerichte as $gericht) {
-                        echo '<div class="col-3">
+                        <?php
+                        foreach ($gerichte as $gericht) {
+                            echo '<div class="col-3">
                         <img class="food-pic" src="'.$gericht['bild'].'" alt="'.$gericht['desc'].'">
                         <a>'.$gericht['desc'].'</a>
                         </div>';
-                    }
-                    ?>
+                        }
+                        ?>
                     </div>
                 </div>
 
@@ -221,16 +221,16 @@ $result_allergen = mysqli_query($link, $allergentable);
                                     <li>
                                         <label>Ihr Name</label><br>
                                         <input type="text" name="vorname" id="vorname" placeholder="Bitte geben Sie Ihren Vorname ein"
-                                               <?php if ($_POST && isset($_POST['vorname'])) {
-                                                   echo 'value="'.htmlspecialchars($_POST['vorname']).'"';
-                                               }?> required>
+                                            <?php if ($_POST && isset($_POST['vorname'])) {
+                                                echo 'value="'.htmlspecialchars($_POST['vorname']).'"';
+                                            }?> required>
                                     </li>
                                     <li>
                                         <label>E-mail</label><br>
                                         <input type="text" name="email" id="email" placeholder="Bitte geben Sie Ihre E-mail ein"
-                                               <?php if ($_POST && isset($_POST['email'])) {
-                                                   echo 'value="'.htmlspecialchars($_POST['email']).'"';
-                                               }?> required><br>
+                                            <?php if ($_POST && isset($_POST['email'])) {
+                                                echo 'value="'.htmlspecialchars($_POST['email']).'"';
+                                            }?> required><br>
                                     </li>
                                     <li>
                                         <label>Newsletter bitte in:</label><br>
@@ -302,6 +302,6 @@ $result_allergen = mysqli_query($link, $allergentable);
             </div>
         </div>
     </footer>
-    </div>
+</div>
 </body>
 </html>

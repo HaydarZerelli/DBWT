@@ -1,0 +1,128 @@
+* {
+    padding: 0;
+    margin: 0;
+    line-height: 145%;
+    text-decoration: none;
+}
+.row {
+    padding: 20px 0 20px 0;
+}
+.row .row .row {
+    padding: 0;
+}
+.main {
+    padding: 0;
+}
+hr {
+    margin: 0;
+}
+header .row {
+    padding: 0;
+    margin: 0;
+}
+nav ul {
+    list-style: none;
+}
+nav li {
+    float: left;
+}
+nav li a {
+    display: block;
+    color: #00b5ad;
+    line-height: 75px;
+    padding: 10px;
+    font-size: 24px;
+    text-decoration: underline;
+}
+nav li a:hover {
+    background-color: #555;
+    color: white;
+}
+
+#logo {
+    width: auto;
+    height: 75px;
+}
+#textbox {
+    display: block;
+    border: 1px solid #676767;
+    box-sizing: border-box; /* weil row 100% der breite hat und die border auf die breite addiert wird und sonst nicht
+    dargestellt wird */
+    text-align: justify;
+    padding: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.food-table {
+    width: 100%;
+}
+.food-table > th {
+    width: 33%;
+}
+/* border für erstes und letztes element*/
+.food-table, .food-table tr:first-child, .food-table tr:last-child {
+    border: 1px solid black;
+}
+/* innen border */
+.food-table td + td,
+.food-table th + th { border-left: 1px solid #CCCCCC; }
+.food-table tr + tr { border-top: 1px solid #CCCCCC; }
+
+.food-pic {
+    height: 150px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.num-table {
+    width: 85%;
+    margin-left: 7.5%;
+    margin-right: 7.5%;
+    box-sizing: border-box;
+}
+.num-table th.num-table-x, th.num-table-y, th.num-table-z{
+    width: 5%;
+}
+.num-table th.num-table-besuche, th.num-table-anmeldungen, th.num-table-speisen {
+    width: 25%;
+}
+form {
+    width: 100%;
+}
+form ul {
+    list-style: none;
+}
+form li {
+    float: left;
+    padding: 0 10px 0 10px;
+}
+.das-ist-uns-wichtig .row {
+    padding: 0;
+}
+.das-ist-uns-wichtig .list {
+    justify-content: center;
+}
+.banner {
+    justify-content: center;
+}
+footer li{
+    display: inline;
+    text-decoration: none ;
+    margin: 5px 5px 5px 5px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    border-right:2px #CCCCCC solid;
+}
+footer li a {
+    color: #00b5ad;
+}
+footer li:last-child {
+    border: none;
+}
+footer ul {
+    margin-right: 5px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+

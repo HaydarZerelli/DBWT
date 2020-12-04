@@ -1,25 +1,107 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <title>E-Mensa</title>
-    <style type="text/css">
-        body {background-color: {{$rd->query['bgcolor'] ?? 'ffffff'}} }
-    </style>
-</head>
-<body>
+@extends('layouts.layout_home')
+
+@section('title', 'E-Mensa')
+@section('header')
     <header>
-        <h1>Hauptseite E-Mensa</h1>
-        <img src="./img/test.jpg" alt="Testbild von https://cdn.pixabay.com/photo/2014/06/03/19/38/road-sign-361513_960_720.jpg">
+        <nav>
+            <div class="row">
+                <!-- E-Mensa Logo -->
+                <div class="col-2">
+                    <a href="/">
+                        <img id="logo" alt="logo" src="img/e-mensa_logo.png">
+                    </a>
+                </div>
+                <!-- Navigation Bar -->
+                <div class="col-10">
+                    <ul>
+                        <li><a href="#ankuendigung">Ank&uuml;ndigung</a></li>
+                        <li><a href="#speisen">Speisen</a></li>
+                        <li><a href="#zahlen">Zahlen</a></li>
+                        <li><a target="_blank" href="../beispiele/Wir_Sind.html">Kontakt</a></li>
+                        <li><a href="#wichtig-fuer-uns">wichtig f&uuml;r uns</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
-    <nav>
-        Navigation
-        <ul>
-            <li><a href="/demo/demo">Demo</a></li>
-            <li><a href="/demo/dbconnect">Datenbank: Gerichte</a></li>
-        </ul>
-    </nav>
+    <hr>
+@endsection
+@section('main')
+    <main>
+        <div class="row main">
+            <!-- leere spalte links -->
+            <div class="col-2"></div>
+            <!-- mittlere spalte mit inhalt der seite -->
+            <div class="col-8">
+                @section('welcome_txt')
+                    <!-- Ankündigung -->
+                    <a name="ankuendigung"></a>
+                    <div class="row">
+                        <h1>Bald gibt es Essen auch online ;)</h1>
+                    </div>
+                    <!-- text box -->
+                    <div class="row" id="textbox">
+                        <p>Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                            culpa qui officia deserunt mollit anim id est laborum.
+                            C/O https://placeholder.com/text/lorem-ipsum/
+                        </p>
+                    </div>
+                @endsection
+
+                @section('meals')
+                    <!-- speisen tabelle -->
+                    <a name="speisen"></a>
+                    <div class="row">
+                        <h1>K&ouml;stlichkeiten, die Sie erwarten</h1>
+                        <table class="food-table">
+                            <tr>
+                                <th class="dish">Gericht</th>
+                                <th class="preis-intern">Preis intern</th>
+                                <th class="preis-extern">Preis extern</th>
+                            </tr>
+                            @foreach($gerichte as $row)
+                                <tr>
+                                    <td>{{$row['name']}}<sup>{{$row['GROUP_CONCAT(gericht_hat_allergen.code)']}}</sup></td>
+                                    <td>{{$row['preis_intern']}}</td>
+                                    <td>{{$row['preis_extern']}}</td>
+                                </tr>
+                            @endforeach
+                        </table>
+
+                        <table class="allergen-table">
+                            <tr>
+                                <th class="code">Allergencode</th>
+                                <th class="allergen">Allergen</th>
+                            </tr>
+                            @foreach($allergene as $row)
+                                <tr>
+                                    <td>{{$row['code']}}</td>
+                                    <td>{{$row['name']}}</td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    </div>
+                @endsection
+            </div>
+            <!-- leere spalte rechts -->
+            <div class="col-2"></div>
+        </div>
+    </main>
+@endsection
+@section('footer')
+    <hr>
     <footer>
-        &copy; Team-Name DBWT
+        <div class="row">
+            <div class="col-12">
+                <ul>
+                    <li>&copy; E-Mensa GmbH</li>
+                    <li><a target="_blank" href="../../beispiele/Wir_Sind.html">About Us</a></li>
+                    <li><a href="#">Impressum</a></li>
+                </ul>
+            </div>
+        </div>
     </footer>
-</body>
-</html>
+@endsection
