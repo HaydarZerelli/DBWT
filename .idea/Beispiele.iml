@@ -6,6 +6,8 @@
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/emensa/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/emensa/vendor/eftec/bladeone" />
+      <excludeFolder url="file://$MODULE_DIR$/emensa/vendor/monolog/monolog" />
+      <excludeFolder url="file://$MODULE_DIR$/emensa/vendor/psr/log" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -91,3 +91,5 @@ alter table gericht_hat_allergen add constraint fk_allergen_gha
 alter table gericht_hat_kategorie drop constraint if exists pk_gericht_hat_kategorie;
 alter table gericht_hat_kategorie add constraint pk_gericht_hat_kategorie
     primary key(kategorie_id, gericht_id);
+
+alter table gericht add bildname varchar(200) default '00_image_missing.jpg';

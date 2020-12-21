@@ -5,6 +5,8 @@ const CONFIG_DB = '../config/db.php';
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/../vendor/autoload.php';
 use eftec\bladeone\BladeOne;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 /* Routing Script for PHP Dev Server */
 $verbosity = 0;
@@ -176,4 +178,11 @@ function view($viewname, $viewargs) {
     $blade = new BladeOne($views, $cache,BladeOne::MODE_DEBUG);
 
     return $blade->run($viewname, $viewargs);
+}
+
+function logger() {
+    $dir = dirname(__DIR__) . '/storage/logs/info.log';
+    $logger = new Logger('mylogger');
+    $logger->pushHandler(new StreamHandler($dir, Logger::INFO));
+    return $logger;
 }

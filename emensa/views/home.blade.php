@@ -52,7 +52,8 @@
                 @endsection
 
                 @section('meals')
-                    <!-- speisen tabelle -->
+                    <!-- tabelle
+
                     <a name="speisen"></a>
                     <div class="row">
                         <h1>K&ouml;stlichkeiten, die Sie erwarten</h1>
@@ -70,7 +71,17 @@
                                 </tr>
                             @endforeach
                         </table>
-
+                    </div> -->
+                    <div class="row" id="food-overview">
+                        @foreach($gerichte as $row)
+                            <div class="col-3">
+                                <img src="img/gerichte/{{$row['bildname']}}" alt="{{$row['name']}}">
+                                <span class="caption">{{$row['name']}}<sup>{{$row['GROUP_CONCAT(gericht_hat_allergen.code)']}}</sup><br>
+                                    {{$row['preis_intern']}}&euro; intern/ {{$row['preis_extern']}}&euro; extern</span>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="row">
                         <table class="allergen-table">
                             <tr>
                                 <th class="code">Allergencode</th>
