@@ -93,3 +93,31 @@ alter table gericht_hat_kategorie add constraint pk_gericht_hat_kategorie
     primary key(kategorie_id, gericht_id);
 
 alter table gericht add bildname varchar(200) default '00_image_missing.jpg';
+
+drop table if exists `benutzer`;
+create table benutzer (
+                          id bigint primary key auto_increment,
+                          email varchar(100) unique not null,
+                          passwort varchar(200) not null,
+                          admin boolean,
+                          anzahlfehler int not null default 0,
+                          anzahlanmeldungen int not null,
+                          letzteanmeldung datetime,
+                          letzterfehler datetime
+);
+
+create view view_suppe as
+    select id, name, preis_intern, preis_extern
+    from gericht
+    where name like '%suppe%';
+
+create view view_anmeldungen as
+    select id as benutzer, anzahlanmeldungen
+    from benutzer
+    order by anzahlanmeldungen desc;
+
+create view view_kategoriegerichte_vegetarisch as
+    select k.name as kategorie, g.name as gericht
+    from (select id as gid, name from gericht where vegetarisch=true) g
+             right join gericht_hat_kategorie on gericht_id=gid
+             right join kategorie k on k.id = gericht_hat_kategorie.kategorie_id;
