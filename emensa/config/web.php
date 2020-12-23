@@ -8,7 +8,9 @@
 return array(
     "/"            => "HomeController@index",
     "/demo"        => "DemoController@demo",
-    '/dbconnect'   => 'DemoController@dbconnect',
+    "/dbconnect"   => "DemoController@dbconnect",
+    "/anmeldung"   => "LoginController@anmeldung",
+    "/anmeldung_verifizieren" => "LoginController@auth",
 
     // Erstes Beispiel:
     '/m4_6a_queryparameter' => 'ExampleController@m4_6a_queryparameter',

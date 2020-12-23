@@ -19,6 +19,11 @@
                         <li><a href="#zahlen">Zahlen</a></li>
                         <li><a target="_blank" href="../beispiele/Wir_Sind.html">Kontakt</a></li>
                         <li><a href="#wichtig-fuer-uns">wichtig f&uuml;r uns</a></li>
+
+                        <li><a><img id="userlogo" alt="userlogo" src="img/user-tie-solid.svg"></a></li>
+                        @if(isset($_SESSION['login_ok']) && $_SESSION['login_ok'] == true)
+                            <li>logged in</li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -33,6 +38,7 @@
             <div class="col-2"></div>
             <!-- mittlere spalte mit inhalt der seite -->
             <div class="col-8">
+                <i class="fas fa-user-circle"></i>
                 @section('welcome_txt')
                     <!-- Ankündigung -->
                     <a name="ankuendigung"></a>

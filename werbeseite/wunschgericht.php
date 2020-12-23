@@ -49,7 +49,6 @@ if (isset($_POST['submitted'])) {
         printf("%d Zeile eingefügt.\n", $statement->affected_rows);
         $statement->close();
     }
-
 }
 if ($fehler) {
     echo '<div class="row"><p>Ein Fehler ist aufgetreten:</p><ul>';

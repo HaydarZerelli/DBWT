@@ -8,11 +8,15 @@ use eftec\bladeone\BladeOne;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
+
 /* Routing Script for PHP Dev Server */
 $verbosity = 0;
 if (preg_match('/\.(?:css|js|png|jpg|jpeg|gif)$/', $_SERVER["REQUEST_URI"])) {
     return false;
 } else {
+    session_start();
+    $_SESSION['test'] = "test";
+    var_dump($_SESSION);
     FrontController::handleRequest("$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]",$_SERVER['REQUEST_METHOD'],$verbosity);
 }
 

@@ -101,7 +101,7 @@ create table benutzer (
                           passwort varchar(200) not null,
                           admin boolean,
                           anzahlfehler int not null default 0,
-                          anzahlanmeldungen int not null,
+                          anzahlanmeldungen int not null default 0,
                           letzteanmeldung datetime,
                           letzterfehler datetime
 );
