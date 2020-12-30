@@ -26,6 +26,7 @@ class LoginController
         date_default_timezone_set('UTC');
         $date = date('Y-m-d H:i:s');
         $_SESSION['login_result_message'] = NULL;
+        $logger = logger();
 
 
         $pw_hash = sha1($salt . $pw);
@@ -33,12 +34,14 @@ class LoginController
             $_SESSION['login_ok'] = true;
             $anzahlanmeldungen = $userdata['anzahlanmeldungen'] + 1;
             login($userdata['id'], $anzahlanmeldungen, $date);
+            $logger->info("Anmeldung erfolgreich: " . $email);
             header("Location: /");
             die();
         } else {
             $_SESSION['login_result_message'] = "Fehler bei der Anmeldung: E-Mail oder Passwort falsch!";
             $anzahlfehler = $userdata['anzahlfehler'] + 1;
             login_failed($userdata['id'], $anzahlfehler, $date);
+            $logger->warning("Anmeldung fehlgeschlagen: " . $email);
             header("Location: /anmeldung");
             die();
         }
