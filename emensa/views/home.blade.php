@@ -20,9 +20,9 @@
                         <li><a target="_blank" href="../beispiele/Wir_Sind.html">Kontakt</a></li>
                         <li><a href="#wichtig-fuer-uns">wichtig f&uuml;r uns</a></li>
                         @if(isset($_SESSION['login_ok']) && $_SESSION['login_ok'] == true)
-                            <li><a href="#">Abmelden</a></li>
+                            <li><a href="/abmeldung">Abmelden</a></li>
                             @else
-                            <li><a href="#">Anmelden</a></li>
+                            <li><a href="/anmeldung">Anmelden</a></li>
                         @endif
                     </ul>
                 </div>

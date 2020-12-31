@@ -11,6 +11,7 @@ return array(
     "/dbconnect"   => "DemoController@dbconnect",
     "/anmeldung"   => "LoginController@anmeldung",
     "/anmeldung_verifizieren" => "LoginController@auth",
+    "/abmeldung"   => "LoginController@abmeldung",
 
     // Erstes Beispiel:
     '/m4_6a_queryparameter' => 'ExampleController@m4_6a_queryparameter',

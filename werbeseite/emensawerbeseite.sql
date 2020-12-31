@@ -121,3 +121,17 @@ create view view_kategoriegerichte_vegetarisch as
     from (select id as gid, name from gericht where vegetarisch=true) g
              right join gericht_hat_kategorie on gericht_id=gid
              right join kategorie k on k.id = gericht_hat_kategorie.kategorie_id;
+
+DELIMITER ;;
+CREATE OR REPLACE PROCEDURE anzahlanmeldungen (IN userid INT)
+BEGIN
+    UPDATE
+        benutzer
+    SET
+        anzahlanmeldungen=anzahlanmeldungen+1
+    WHERE
+            id = userid;
+END;;
+DELIMITER ;
+
+CALL anzahlanmeldungen(1);
