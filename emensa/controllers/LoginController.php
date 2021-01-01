@@ -8,7 +8,13 @@ class LoginController
         return view('anmeldung', ['rd' => $rd, 'fehlermeldung' => $msg]);
     }
     public function abmeldung(RequestData $rd) {
-
+        /** session zerstören = anmeldung tot **/
+        session_destroy();
+        /**
+         * ACHTUNG dbwt/M5/:emensa/public/index_72.php/  kann entfernt werden, da sliegt an manuels rechner!!!
+         */
+        header('Location: /DBWT/emensa/public/index_72.php/');
+        exit;
     }
     public function auth() {
         $salt = 1337;
