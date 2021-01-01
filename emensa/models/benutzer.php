@@ -13,11 +13,19 @@ function get_userdata($email) {
 }
 function login($id, $anzahlanmeldungen, $letzteanmeldung) {
     $link = connectdb();
-    $stmt = $link->stmt_init();
     $stmt = $link->prepare("update benutzer set anzahlanmeldungen=?, letzteanmeldung=? where id=?");
     $stmt->bind_param('iss', $anzahlanmeldungen, $letzteanmeldung, $id);
     $stmt->execute();
     $stmt->close();
+    /**/
+}
+function db_benutzer_mysql_begin_transaction(){
+    $link=connectdb();
+    $username=mysqli_real_escape_string($link,$_POST['username']);
+    $link->begin_transaction();
+    $link->query("UPDATE benutzer SET anzahlanmeldungen= anzahlanmeldungen+1, letzteanmeldung =current_timestamp WHERE email='$username'");
+    $link->commit();
+    return $link;
 }
 function login_failed($id, $anzahlfehler, $letzterfehler) {
     $link = connectdb();
