@@ -1,4 +1,4 @@
-<h3>{{$fehlermeldung}}</h3>
+<h3>{{session('login_result_message')}}</h3>
 <!DOCTYPE html>
 <html lang="en">
 <head>

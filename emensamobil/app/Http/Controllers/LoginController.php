@@ -12,21 +12,19 @@ use Illuminate\Support\Facades\DB;
 class LoginController extends BaseController
 {
     public function anmeldung(Request $rd) {
-        $msg = $_SESSION['login_result_message'] ?? NULL;
+        $msg = $rd->session()->exists('login_result_message');
         return view('anmeldung', ['rd' => $rd, 'fehlermeldung' => $msg]);
     }
-    public function abmeldung() {
+    public function abmeldung(Request $request) {
         $log = logger();
 
         $log->info('Abmeldung');
+        session()->flush();
 
-        session_destroy();
-
-        header('Location: /');
-        exit;
+        return redirect()->to('/');
     }
 
-    public function auth() {
+    public function auth(Request $request) {
 
         $salt = 1337;
         $email = $_POST['email'] ?? NULL;
@@ -40,13 +38,13 @@ class LoginController extends BaseController
 
         // abfrage ob es den user in der datenbank gibt
         if (!$userdata) {
-            $_SESSION['login_result_message'] = "Fehler bei der Anmeldung: E-Mail oder Passwort falsch!";
+            session(['login_result_message' =>  "Fehler bei der Anmeldung: E-Mail oder Passwort falsch!"]);
             return back();
         }
         $userdata = $userdata[0];
         date_default_timezone_set('UTC');
         $date = date('Y-m-d H:i:s');
-        $_SESSION['login_result_message'] = NULL;
+        session(['login_result_message' => NULL]);
         $logger = logger();
 
 
@@ -54,7 +52,7 @@ class LoginController extends BaseController
 
         $pw_hash = sha1($salt . $pw);
         if ($userdata->passwort == $pw_hash) {        //erfolgreiche anmeldung
-            $_SESSION['login_ok'] = true;
+            session(['login_ok' => true]);
 
             /*login func*/
             DB::beginTransaction();
@@ -65,7 +63,7 @@ class LoginController extends BaseController
             $logger->info("Anmeldung erfolgreich: " . $email);
             return redirect()->to('/');
         } else {                                    // anmeldung fehlgeschlagen
-            $_SESSION['login_result_message'] = "Fehler bei der Anmeldung: E-Mail oder Passwort falsch!";
+            session(['login_result_message' => "Fehler bei der Anmeldung: E-Mail oder Passwort falsch!"]);
             $anzahlfehler = $userdata->anzahlfehler + 1;
             login_failed($userdata->id, $anzahlfehler, $date);
             $logger->warning("Anmeldung fehlgeschlagen: " . $email);
