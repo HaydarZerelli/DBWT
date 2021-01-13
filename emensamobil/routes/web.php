@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index']);
+Route::post('/', [HomeController::class, 'index']);
+Route::get('/anmeldung', [LoginController::class, 'anmeldung']);
+Route::post('/anmeldung_verifizieren', [LoginController::class, 'auth']);
+Route::get('/abmeldung', [LoginController::class, 'abmeldung']);

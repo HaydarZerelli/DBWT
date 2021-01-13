@@ -134,4 +134,3 @@ BEGIN
 END;;
 DELIMITER ;
 
-CALL anzahlanmeldungen(1);
