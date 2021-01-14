@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\BewertungController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,5 @@ Route::post('/', [HomeController::class, 'index']);
 Route::get('/anmeldung', [LoginController::class, 'anmeldung']);
 Route::post('/anmeldung_verifizieren', [LoginController::class, 'auth']);
 Route::get('/abmeldung', [LoginController::class, 'abmeldung']);
+Route::get('/bewertung', [BewertungController::class, 'show']);
+Route::post('/bewertung_verarbeiten', [BewertungController::class, 'rate']);

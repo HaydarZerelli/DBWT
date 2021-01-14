@@ -53,7 +53,7 @@ class LoginController extends BaseController
         $pw_hash = sha1($salt . $pw);
         if ($userdata->passwort == $pw_hash) {        //erfolgreiche anmeldung
             session(['login_ok' => true]);
-
+            session(['auth' => 'token']);
             /*login func*/
             DB::beginTransaction();
             DB::select("CALL anzahlanmeldungen(?)", [$userdata->id]);
