@@ -45,7 +45,6 @@ function outputFiles($path, $link){
         echo "ERROR: The directory does not exist.";
     }
 }
-
 // Call the function
 outputFiles("../emensa/public/img/gerichte/", $link);
 ?>
