@@ -134,3 +134,19 @@ BEGIN
 END;;
 DELIMITER ;
 
+ALTER TABLE benutzer ADD COLUMN IF NOT EXISTS auth_token varchar(100);
+
+drop table if exists `bewertungen`;
+create table bewertungen (
+    id bigint auto_increment,
+    benutzerid bigint,
+    constraint fk_bewertung_benutzer
+        foreign key (benutzerid) references benutzer(id),
+    gerichtid bigint,
+    constraint fk_bewertung_gericht
+        foreign key (gerichtid) references gericht(id),
+    hervorgehoben boolean,
+    bewertungszeitpunkt timestamp default current_timestamp,
+    sterne varchar(100) not null,
+    bemerkung varchar(200)
+);

@@ -85,6 +85,9 @@
                                 <img src="img/gerichte/{{$row->bildname}}" alt="{{$row->name}}">
                                 <span class="caption">{{$row->name}}<sup>{{$row->gha_code}}</sup><br>
                                     {{$row->preis_intern}}&euro; intern/ {{$row->preis_extern}}&euro; extern</span>
+                                @if(session('auth_token'))
+                                    <a href="{{url('bewertung?').http_build_query(['gerichtid' => $row->id])}}">bewerten</a>
+                                @endif
                             </div>
                         @endforeach
                     </div>

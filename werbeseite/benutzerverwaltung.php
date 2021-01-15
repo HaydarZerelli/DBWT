@@ -38,4 +38,4 @@ function add_user($email, $pw, $admin=false) {
     $stmt->close();
 }
 
-add_user("admin@emensa.example", "abcd1234", true);
+add_user("juergen@emensa.example", "asdf1234", true);

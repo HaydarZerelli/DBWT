@@ -12,7 +12,7 @@ class HomeController extends BaseController
 
         $logger = logger();
         $logger->info("zugriff hauptseite");
-        $gerichte = DB::select("SELECT gericht.name, GROUP_CONCAT(gericht_hat_allergen.code) as gha_code, preis_intern, preis_extern, bildname
+        $gerichte = DB::select("SELECT gericht.id, gericht.name, GROUP_CONCAT(gericht_hat_allergen.code) as gha_code, preis_intern, preis_extern, bildname
         FROM gericht
             LEFT JOIN gericht_hat_allergen ON gericht_hat_allergen.id = gericht.id
         GROUP BY gericht.name

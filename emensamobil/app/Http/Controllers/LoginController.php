@@ -52,11 +52,14 @@ class LoginController extends BaseController
 
         $pw_hash = sha1($salt . $pw);
         if ($userdata->passwort == $pw_hash) {        //erfolgreiche anmeldung
+            $nr=rand();
+            $auth_token = sha1($nr);;
             session(['login_ok' => true]);
-            session(['auth' => 'token']);
+            session(['auth_token' => $auth_token]);
             /*login func*/
             DB::beginTransaction();
             DB::select("CALL anzahlanmeldungen(?)", [$userdata->id]);
+            DB::update("UPDATE benutzer SET auth_token=? WHERE id=?", [$auth_token, $userdata->id]);
             DB::commit();
             /**/
 
