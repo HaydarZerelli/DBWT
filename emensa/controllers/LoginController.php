@@ -7,6 +7,8 @@ class LoginController
         $msg = $_SESSION['login_result_message'] ?? NULL;
         return view('anmeldung', ['rd' => $rd, 'fehlermeldung' => $msg]);
     }
+
+
     public function abmeldung(RequestData $rd) {
         $log = logger();
 
