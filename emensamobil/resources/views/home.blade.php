@@ -91,6 +91,21 @@
                             </div>
                         @endforeach
                     </div>
+                @endsection
+                @section('ratings')
+                    <div class="row">
+                        <h2>Meinung unserer Kunden</h2>
+                    </div>
+                    <div class="row">
+                        <ul>
+                            @foreach($bewertungen as $row)
+
+                                <li> {{$row->name}} | {{$row->sterne}} | "{{$row->bemerkung}}" </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endsection
+                @section('allergenes')
                     <div class="row">
                         <table class="allergen-table">
                             <tr>

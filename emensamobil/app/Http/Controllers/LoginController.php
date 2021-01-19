@@ -56,6 +56,9 @@ class LoginController extends BaseController
             $auth_token = sha1($nr);;
             session(['login_ok' => true]);
             session(['auth_token' => $auth_token]);
+            if ($userdata->admin == true) {
+                session(['admin' => true]);
+            }
             /*login func*/
             DB::beginTransaction();
             DB::select("CALL anzahlanmeldungen(?)", [$userdata->id]);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Bewertung;
 
 
 class HomeController extends BaseController
@@ -18,6 +19,10 @@ class HomeController extends BaseController
         GROUP BY gericht.name
         Order by gericht.name");
         $allergene = DB::select("SELECT code, name FROM allergen ORDER BY code");
-        return view('home', ['rd' => $request, 'gerichte' => $gerichte, 'allergene' => $allergene, 'session' => $request->session()]);
+        $bewertungen = Bewertung::join('gericht', 'bewertungen.gericht_id', '=', 'gericht.id')->where('hervorgehoben', true)->get();
+
+
+        //$bewertungen = DB::select("select gericht.name, sterne, bemerkung from bewertungen join gericht on bewertungen.gericht_id = gericht.id where hervorgehoben=true;");
+        return view('home', ['rd' => $request, 'gerichte' => $gerichte, 'allergene' => $allergene, 'session' => $request->session(), 'bewertungen' => $bewertungen]);
     }
 }

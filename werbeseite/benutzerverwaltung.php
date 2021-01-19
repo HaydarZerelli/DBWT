@@ -37,5 +37,5 @@ function add_user($email, $pw, $admin=false) {
     printf("%d Zeile eingefügt.\n", $stmt->affected_rows);
     $stmt->close();
 }
-
-add_user("juergen@emensa.example", "asdf1234", true);
+add_user("admin@emensa.example", "abcd1234", true);
+add_user("juergen@emensa.example", "asdf1234", false);

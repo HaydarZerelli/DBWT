@@ -19,7 +19,7 @@
 
             @foreach($bewertungen as $row)
                 <tr>
-                    <td>{{$row->gerichtid}}</td>
+                    <td>{{$row->gericht_id}}</td>
                     <td>{{$row->sterne}}</td>
                     <td>{{$row->bemerkung}}</td>
                     <td><a href="{{url('/bewertung_loeschen?').http_build_query(['id' => $row->id])}}">löschen</a></td>

@@ -18,6 +18,10 @@
             @show
         @section('meals')
             @show
+        @section('ratings')
+            @show
+        @section('allergenes')
+            @show
         @section('footer')
             @show
     </div>

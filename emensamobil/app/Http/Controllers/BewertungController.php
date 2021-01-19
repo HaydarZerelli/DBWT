@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Bewertung;
+use App\Models\Gericht;
 
 
 class BewertungController extends BaseController
@@ -14,7 +16,9 @@ class BewertungController extends BaseController
         if (!session('auth_token')) {
             return redirect()->to('/');
         } else {
-            $data = DB::select("SELECT name, bildname FROM gericht WHERE id=?", [$rd->query('gerichtid')]);
+
+            $data = Gericht::query()->where('id', $rd->query('gerichtid'))->get();
+            // $data = DB::select("SELECT name, bildname FROM gericht WHERE id=?", [$rd->query('gerichtid')]);
 
             return view('bewertung', ['request' => $rd, 'data' => $data]);
         }
@@ -35,26 +39,47 @@ class BewertungController extends BaseController
 
         $benutzerid = $benutzerid[0]->id;
 
-        DB::insert('INSERT INTO bewertungen (sterne, bemerkung, benutzerid, gerichtid) VALUES (?,?,?,?);',
+        DB::insert('INSERT INTO bewertungen (sterne, bemerkung, benutzer_id, gericht_id) VALUES (?,?,?,?);',
             [$sterne, $kommentar, $benutzerid, $gerichtid]);
 
         return redirect()->to('/');
     }
 
     function zeigeAlle(Request $rd) {
-        $data = DB::select("SELECT * from bewertungen ORDER BY bewertungszeitpunkt DESC LIMIT 30");
-        return view('bewertungen', ['bewertungen' => $data]);
+
+        $bewertungen = Bewertung::query()->orderBy('bewertungszeitpunkt', 'DESC')->limit(30)->get();
+
+        //$data = DB::select("SELECT * from bewertungen ORDER BY bewertungszeitpunkt DESC LIMIT 30");
+        return view('bewertungen', ['bewertungen' => $bewertungen]);
     }
 
     function zeigeMeine(Request $rd) {
         $benutzerid = DB::select("SELECT id FROM benutzer WHERE auth_token=?", [session('auth_token')]);
         $benutzerid = $benutzerid[0]->id;
-        $bewertungen = DB::select("SELECT * FROM bewertungen WHERE benutzerid=? ORDER BY bewertungszeitpunkt DESC", [$benutzerid]);
+        $bewertungen = DB::select("SELECT * FROM bewertungen WHERE benutzer_id=? ORDER BY bewertungszeitpunkt DESC", [$benutzerid]);
         return view('meine_bewertungen', ['bewertungen' => $bewertungen]);
     }
 
     function loeschen(Request $rd) {
-        $res = DB::delete("delete from bewertungen where id=?", [$rd->input('id')]);
+        $id = $rd->input('id');
+        Bewertung::destroy($id);
+        //$res = DB::delete("delete from bewertungen where id=?", [$rd->input('id')]);
         return redirect()->to('meine_bewertungen');
     }
+
+    function hervorheben(Request $rd) {
+        $bewertungsid=$rd->query('bewertungsid');
+        //DB::update("update bewertungen set hervorgehoben=true where id=?", [$bewertungsid]);
+        $bewertung = Bewertung::query()->find($bewertungsid);
+        $bewertung->hervorgehoben = true;
+        $bewertung->save();
+        return redirect()->to('/bewertungen');
+    }
+
+    function abwaehlen(Request $rd) {
+        $bewertungsid=$rd->query('bewertungsid');
+        DB::update("update bewertungen set hervorgehoben=false where id=?", [$bewertungsid]);
+        return redirect()->to('/bewertungen');
+    }
+
 }

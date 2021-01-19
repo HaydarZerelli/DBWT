@@ -15,12 +15,24 @@
                 <th>gericht id</th>
                 <th>bewertung</th>
                 <th>bemerkung</th>
+                @if(session('admin'))
+                    <th></th>
+                @endif
 
                 @foreach($bewertungen as $row)
-                    <tr>
-                    <td>{{$row->gerichtid}}</td>
+                    @if($row->hervorgehoben)
+                        <tr class="hervorgehoben">
+                    @else
+                        <tr>
+                    @endif
+                    <td>{{$row->gericht_id}}</td>
                     <td>{{$row->sterne}}</td>
                     <td>{{$row->bemerkung}}</td>
+                    @if(session('admin') && !$row->hervorgehoben)
+                        <td><a href="{{url('/hervorheben?').http_build_query(['bewertungsid' => $row->id])}}">hervorheben</a></td>
+                    @elseif (session('admin') && $row->hervorgehoben)
+                        <td><a href="{{url('/abwaehlen?').http_build_query(['bewertungsid' => $row->id])}}">abw&auml;hlen</a></td>
+                    @endif
                     </tr>
                 @endforeach
             </table>

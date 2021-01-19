@@ -26,3 +26,5 @@ Route::post('/bewertung_verarbeiten', [BewertungController::class, 'rate']);
 Route::get('/bewertungen', [BewertungController::class, 'zeigeAlle']);
 Route::get('/meine_bewertungen', [BewertungController::class, 'zeigeMeine']);
 Route::get('/bewertung_loeschen', [BewertungController::class, 'loeschen']);
+Route::get('/hervorheben', [BewertungController::class, 'hervorheben']);
+Route::get('/abwaehlen', [BewertungController::class, 'abwaehlen']);

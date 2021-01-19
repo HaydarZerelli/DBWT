@@ -138,15 +138,18 @@ ALTER TABLE benutzer ADD COLUMN IF NOT EXISTS auth_token varchar(100);
 
 drop table if exists `bewertungen`;
 create table bewertungen (
-    id bigint auto_increment,
-    benutzerid bigint,
+    id bigint primary key auto_increment,
+    benutzer_id bigint,
     constraint fk_bewertung_benutzer
-        foreign key (benutzerid) references benutzer(id),
-    gerichtid bigint,
+        foreign key (benutzer_id) references benutzer(id),
+    gericht_id bigint,
     constraint fk_bewertung_gericht
-        foreign key (gerichtid) references gericht(id),
+        foreign key (gericht_id) references gericht(id),
     hervorgehoben boolean,
     bewertungszeitpunkt timestamp default current_timestamp,
     sterne varchar(100) not null,
     bemerkung varchar(200)
 );
+
+alter table bewertungen add column updated_at timestamp;
+alter table gericht add column updated_at timestamp;
